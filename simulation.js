@@ -61,6 +61,17 @@ function buildScaledDamagePacket(packet, combatStats, targetState, starLevel, fa
   return { damage: postMitigationDamage, type: resolvedType };
 }
 
+function expectedBonusManaPerAttack(critChance, hooks = {}) {
+  const baseBonus = hooks.bonusManaOnAttack ?? 0;
+  if (typeof hooks.bonusManaOnCritTotal === "number") {
+    return baseBonus + critChance * (hooks.bonusManaOnCritTotal - baseBonus);
+  }
+  if (typeof hooks.bonusManaOnCrit === "number") {
+    return baseBonus + critChance * hooks.bonusManaOnCrit;
+  }
+  return baseBonus;
+}
+
 function buildHeroState(hero, starLevel, extra, target) {
   const starIndex = clamp(starLevel - 1, 0, 2);
   const baseRole = roleDefaults[hero.role];
@@ -149,6 +160,13 @@ function buildHeroState(hero, starLevel, extra, target) {
 
   if (extra?.hooks?.conditionalDamageAmp && target.hp >= extra.hooks.conditionalDamageAmp.targetHpAtLeast) {
     stats.damageAmp += extra.hooks.conditionalDamageAmp.amp;
+  }
+
+  if (extra?.hooks?.conditionalDamageAmpAgainstTankLike) {
+    const targetIsTankLike = target.hp >= 1600 || target.armor >= 50 || target.mr >= 50;
+    if (targetIsTankLike) {
+      stats.damageAmp += extra.hooks.conditionalDamageAmpAgainstTankLike;
+    }
   }
 
   stats.apStaticBase = stats.ap;
@@ -338,6 +356,8 @@ export function simulateSingle({ hero, starLevel, extra, target, duration = 25 }
     attackSpeedCapBonus: extra?.hooks?.attackSpeedCapBonus ?? 0,
     titanStacks: 0,
     krakenStacks: 0,
+    nextPerSecondAsTickAt: extra?.hooks?.attackSpeedPerSecond ? extra?.hooks?.attackSpeedTickInterval ?? 1 : null,
+    nextApIntervalAt: extra?.hooks?.apPerInterval ? extra?.hooks?.apIntervalSeconds ?? 5 : null,
     timeCursor: 0,
   };
   const specialState = {
@@ -377,6 +397,13 @@ export function simulateSingle({ hero, starLevel, extra, target, duration = 25 }
     }
   };
 
+  const applyArmorShred = () => {
+    if (extra?.hooks?.armorShredOnHitPercent) {
+      dynamicState.armorShredPercent = extra.hooks.armorShredOnHitPercent;
+      dynamicState.armorShredUntil = time + (extra?.hooks?.armorShredDuration ?? 3);
+    }
+  };
+
   const applyOnAttackStacks = (attackStats, critRollCount = 1) => {
     if (extra?.hooks?.attackSpeedPerAttack) {
       const nextAsFlat = dynamicState.asFlat + stats.baseAs * extra.hooks.attackSpeedPerAttack;
@@ -406,10 +433,7 @@ export function simulateSingle({ hero, starLevel, extra, target, duration = 25 }
 
     applyCritAmpStacks(expectedCritEvents);
 
-    if (extra?.hooks?.armorShredOnCritPercent && expectedCritEvents > 0) {
-      dynamicState.armorShredPercent = extra.hooks.armorShredOnCritPercent;
-      dynamicState.armorShredUntil = time + (extra?.hooks?.armorShredDuration ?? 3);
-    }
+    applyArmorShred();
 
     if (extra?.hooks?.mrShredPercent) {
       dynamicState.mrShredPercent = extra.hooks.mrShredPercent;
@@ -418,6 +442,7 @@ export function simulateSingle({ hero, starLevel, extra, target, duration = 25 }
   };
 
   const applyOnSpellHitShreds = () => {
+    applyArmorShred();
     if (extra?.hooks?.mrShredPercent) {
       dynamicState.mrShredPercent = extra.hooks.mrShredPercent;
       dynamicState.mrShredUntil = time + (extra?.hooks?.mrShredDuration ?? 5);
@@ -462,6 +487,25 @@ export function simulateSingle({ hero, starLevel, extra, target, duration = 25 }
     if (dynamicState.temporaryAsUntil !== null && dynamicState.temporaryAsUntil <= currentTime) {
       dynamicState.temporaryAsFlat = 0;
       dynamicState.temporaryAsUntil = null;
+    }
+
+    while (
+      extra?.hooks?.attackSpeedPerSecond &&
+      dynamicState.nextPerSecondAsTickAt !== null &&
+      dynamicState.nextPerSecondAsTickAt <= currentTime
+    ) {
+      const nextAsFlat = dynamicState.asFlat + stats.baseAs * extra.hooks.attackSpeedPerSecond;
+      dynamicState.asFlat = Math.min(stats.baseAs * (extra?.hooks?.attackSpeedCapBonus ?? 1.5), nextAsFlat);
+      dynamicState.nextPerSecondAsTickAt += extra?.hooks?.attackSpeedTickInterval ?? 1;
+    }
+
+    while (
+      extra?.hooks?.apPerInterval &&
+      dynamicState.nextApIntervalAt !== null &&
+      dynamicState.nextApIntervalAt <= currentTime
+    ) {
+      dynamicState.apFlat += extra.hooks.apPerInterval;
+      dynamicState.nextApIntervalAt += extra?.hooks?.apIntervalSeconds ?? 5;
     }
 
     while (
@@ -618,11 +662,6 @@ export function simulateSingle({ hero, starLevel, extra, target, duration = 25 }
     const canGainMana = time >= manaLockedUntil && (castEndTime === null || canActDuringCast);
 
     if (canAttack) {
-      const ramp = extra?.hooks?.perSecondAp
-        ? Math.min(extra.hooks.maxPerSecondAp ?? extra.hooks.perSecondAp * duration, extra.hooks.perSecondAp * time)
-        : 0;
-      stats.ap = stats.apStaticBase + ramp;
-
       const currentCombatStats = buildCombatStats(stats, dynamicState);
       attackProgress += currentCombatStats.as * dt;
       if (canGainMana) {
@@ -768,11 +807,7 @@ export function simulateSingle({ hero, starLevel, extra, target, duration = 25 }
         if (canGainMana) {
           mana = Math.min(
             stats.manaMax,
-            mana +
-              (stats.manaPerAttack +
-                (extra?.hooks?.bonusManaOnAttack ?? 0) +
-                stats.critChance * (extra?.hooks?.bonusManaOnCrit ?? 0)) *
-                stats.manaGainMultiplier,
+            mana + (stats.manaPerAttack + expectedBonusManaPerAttack(stats.critChance, extra?.hooks)) * stats.manaGainMultiplier,
           );
         }
         attackProgress -= 1;

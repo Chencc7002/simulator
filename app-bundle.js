@@ -419,6 +419,7 @@ const extras = [
 
 
 
+
 const DAMAGE_COLORS = {
   physical: "#e55645",
   magic: "#37acd8",
@@ -478,6 +479,17 @@ function buildScaledDamagePacket(packet, combatStats, targetState, starLevel, fa
   }
 
   return { damage: postMitigationDamage, type: resolvedType };
+}
+
+function expectedBonusManaPerAttack(critChance, hooks = {}) {
+  const baseBonus = hooks.bonusManaOnAttack ?? 0;
+  if (typeof hooks.bonusManaOnCritTotal === "number") {
+    return baseBonus + critChance * (hooks.bonusManaOnCritTotal - baseBonus);
+  }
+  if (typeof hooks.bonusManaOnCrit === "number") {
+    return baseBonus + critChance * hooks.bonusManaOnCrit;
+  }
+  return baseBonus;
 }
 
 function buildHeroState(hero, starLevel, extra, target) {
@@ -568,6 +580,13 @@ function buildHeroState(hero, starLevel, extra, target) {
 
   if (extra?.hooks?.conditionalDamageAmp && target.hp >= extra.hooks.conditionalDamageAmp.targetHpAtLeast) {
     stats.damageAmp += extra.hooks.conditionalDamageAmp.amp;
+  }
+
+  if (extra?.hooks?.conditionalDamageAmpAgainstTankLike) {
+    const targetIsTankLike = target.hp >= 1600 || target.armor >= 50 || target.mr >= 50;
+    if (targetIsTankLike) {
+      stats.damageAmp += extra.hooks.conditionalDamageAmpAgainstTankLike;
+    }
   }
 
   stats.apStaticBase = stats.ap;
@@ -755,6 +774,8 @@ function simulateSingle({ hero, starLevel, extra, target, duration = 25 }) {
     attackSpeedCapBonus: extra?.hooks?.attackSpeedCapBonus ?? 0,
     titanStacks: 0,
     krakenStacks: 0,
+    nextPerSecondAsTickAt: extra?.hooks?.attackSpeedPerSecond ? extra?.hooks?.attackSpeedTickInterval ?? 1 : null,
+    nextApIntervalAt: extra?.hooks?.apPerInterval ? extra?.hooks?.apIntervalSeconds ?? 5 : null,
     timeCursor: 0,
   };
   const specialState = {
@@ -794,6 +815,13 @@ function simulateSingle({ hero, starLevel, extra, target, duration = 25 }) {
     }
   };
 
+  const applyArmorShred = () => {
+    if (extra?.hooks?.armorShredOnHitPercent) {
+      dynamicState.armorShredPercent = extra.hooks.armorShredOnHitPercent;
+      dynamicState.armorShredUntil = time + (extra?.hooks?.armorShredDuration ?? 3);
+    }
+  };
+
   const applyOnAttackStacks = (attackStats, critRollCount = 1) => {
     if (extra?.hooks?.attackSpeedPerAttack) {
       const nextAsFlat = dynamicState.asFlat + stats.baseAs * extra.hooks.attackSpeedPerAttack;
@@ -823,10 +851,7 @@ function simulateSingle({ hero, starLevel, extra, target, duration = 25 }) {
 
     applyCritAmpStacks(expectedCritEvents);
 
-    if (extra?.hooks?.armorShredOnCritPercent && expectedCritEvents > 0) {
-      dynamicState.armorShredPercent = extra.hooks.armorShredOnCritPercent;
-      dynamicState.armorShredUntil = time + (extra?.hooks?.armorShredDuration ?? 3);
-    }
+    applyArmorShred();
 
     if (extra?.hooks?.mrShredPercent) {
       dynamicState.mrShredPercent = extra.hooks.mrShredPercent;
@@ -835,6 +860,7 @@ function simulateSingle({ hero, starLevel, extra, target, duration = 25 }) {
   };
 
   const applyOnSpellHitShreds = () => {
+    applyArmorShred();
     if (extra?.hooks?.mrShredPercent) {
       dynamicState.mrShredPercent = extra.hooks.mrShredPercent;
       dynamicState.mrShredUntil = time + (extra?.hooks?.mrShredDuration ?? 5);
@@ -879,6 +905,25 @@ function simulateSingle({ hero, starLevel, extra, target, duration = 25 }) {
     if (dynamicState.temporaryAsUntil !== null && dynamicState.temporaryAsUntil <= currentTime) {
       dynamicState.temporaryAsFlat = 0;
       dynamicState.temporaryAsUntil = null;
+    }
+
+    while (
+      extra?.hooks?.attackSpeedPerSecond &&
+      dynamicState.nextPerSecondAsTickAt !== null &&
+      dynamicState.nextPerSecondAsTickAt <= currentTime
+    ) {
+      const nextAsFlat = dynamicState.asFlat + stats.baseAs * extra.hooks.attackSpeedPerSecond;
+      dynamicState.asFlat = Math.min(stats.baseAs * (extra?.hooks?.attackSpeedCapBonus ?? 1.5), nextAsFlat);
+      dynamicState.nextPerSecondAsTickAt += extra?.hooks?.attackSpeedTickInterval ?? 1;
+    }
+
+    while (
+      extra?.hooks?.apPerInterval &&
+      dynamicState.nextApIntervalAt !== null &&
+      dynamicState.nextApIntervalAt <= currentTime
+    ) {
+      dynamicState.apFlat += extra.hooks.apPerInterval;
+      dynamicState.nextApIntervalAt += extra?.hooks?.apIntervalSeconds ?? 5;
     }
 
     while (
@@ -1035,11 +1080,6 @@ function simulateSingle({ hero, starLevel, extra, target, duration = 25 }) {
     const canGainMana = time >= manaLockedUntil && (castEndTime === null || canActDuringCast);
 
     if (canAttack) {
-      const ramp = extra?.hooks?.perSecondAp
-        ? Math.min(extra.hooks.maxPerSecondAp ?? extra.hooks.perSecondAp * duration, extra.hooks.perSecondAp * time)
-        : 0;
-      stats.ap = stats.apStaticBase + ramp;
-
       const currentCombatStats = buildCombatStats(stats, dynamicState);
       attackProgress += currentCombatStats.as * dt;
       if (canGainMana) {
@@ -1185,11 +1225,7 @@ function simulateSingle({ hero, starLevel, extra, target, duration = 25 }) {
         if (canGainMana) {
           mana = Math.min(
             stats.manaMax,
-            mana +
-              (stats.manaPerAttack +
-                (extra?.hooks?.bonusManaOnAttack ?? 0) +
-                stats.critChance * (extra?.hooks?.bonusManaOnCrit ?? 0)) *
-                stats.manaGainMultiplier,
+            mana + (stats.manaPerAttack + expectedBonusManaPerAttack(stats.critChance, extra?.hooks)) * stats.manaGainMultiplier,
           );
         }
         attackProgress -= 1;
@@ -1266,6 +1302,7 @@ function simulateSingle({ hero, starLevel, extra, target, duration = 25 }) {
 
   return results;
 }
+
 
 
 
@@ -1447,7 +1484,9 @@ function buildAbilityDamageProfile(champion, abilityType) {
 
   if (champion.apiName === "TFT17_Vex") {
     return {
-      damage: [0, 0, 0],
+      damage: [0, 1, 2].map(
+        (index) => (baseValues.ShadowHandMagicDamage?.[index] ?? 0) * (baseValues.NumActiveStrikes?.[index] ?? 1),
+      ),
       typeOverride: "magic",
       special: {
         castTimeOverride: 0,
@@ -1460,12 +1499,6 @@ function buildAbilityDamageProfile(champion, abilityType) {
           spellSource: true,
         },
         activeShadowStrikes: baseValues.NumActiveStrikes ?? [3, 3, 3],
-        activeShadowStrikePacket: {
-          damage: baseValues.ShadowHandMagicDamage ?? [0, 0, 0],
-          type: "magic",
-          apRatio: 1,
-          spellSource: true,
-        },
         everyNAttacksBonus: {
           interval: baseValues.NumStrikesForPassive ?? [5, 5, 5],
           damage: baseValues.ShadowHandDamage ?? [0, 0, 0],
@@ -1610,57 +1643,38 @@ const UI_TEXT = {
 };
 
 const ITEM_OVERRIDE_BY_API = {
-  TFT_Item_ArchangelsStaff: {
-    hooks: { perSecondAp: 0.04, maxPerSecondAp: 0.4 },
-  },
   TFT_Item_JeweledGauntlet: {
     hooks: { enableSpellCrit: true },
   },
   TFT_Item_InfinityEdge: {
     hooks: { enableSpellCrit: true, precisionCritDamageBonus: 0.1 },
   },
-  TFT_Item_StatikkShiv: {
-    hooks: { mrShredPercent: 0.3, mrShredDuration: 5 },
-  },
-  TFT_Item_SpearOfShojin: {
-    hooks: { bonusManaOnAttack: 5 },
-  },
-  TFT_Item_GuinsoosRageblade: {
-    hooks: { attackSpeedPerAttack: 0.07, attackSpeedCapBonus: 1.5 },
-  },
-  TFT_Item_AdaptiveHelm: {
-    hooks: { manaGainMultiplier: 0.15, backlineAdApPercent: 0.1 },
-  },
-  TFT_Item_LastWhisper: {
-    hooks: { armorShredOnCritPercent: 0.3, armorShredDuration: 3 },
-  },
-  TFT_Item_Leviathan: {
-    hooks: { bonusManaOnCrit: 4 },
-  },
   TFT_Item_Morellonomicon: {
     hooks: { burnPercent: 1, burnTicksPerSecond: 1, burnDuration: 10, burnOnSpell: true },
   },
   TFT_Item_PowerGauntlet: {
     flatStats: { damageAmp: 0.05 },
-    hooks: { damageAmpPerCritStack: 0.05, damageAmpStackDuration: 5, damageAmpMaxStacks: 4 },
+    hooks: {},
   },
   TFT_Item_RapidFireCannon: {
     hooks: { burnPercent: 1, burnTicksPerSecond: 1, burnDuration: 5, burnOnAttack: true, burnOnSpell: true },
   },
-  TFT_Item_RunaansHurricane: {
-    hooks: { krakenAdPerStack: 0.035, krakenStackCap: 15, krakenAsAtCap: 0.15 },
-  },
-  TFT_Item_TitansResolve: {
-    hooks: { titanAdPerStack: 0.02, titanApPerStack: 0.02, titanStackCap: 25, titanAmpAtCap: 0.1 },
-  },
   TFT_Item_UnstableConcoction: {
-    flatStats: { adPercent: 0.3, apFlat: 0.3 },
-    hooks: {},
-  },
-  TFT_Item_RabadonsDeathcap: {
+    flatStats: { adPercent: 0.15, apFlat: 0.15 },
     hooks: {},
   },
 };
+
+function expectedBonusManaPerAttack(baseCritChance, hooks = {}) {
+  const baseBonus = hooks.bonusManaOnAttack ?? 0;
+  if (typeof hooks.bonusManaOnCritTotal === "number") {
+    return baseBonus + baseCritChance * (hooks.bonusManaOnCritTotal - baseBonus);
+  }
+  if (typeof hooks.bonusManaOnCrit === "number") {
+    return baseBonus + baseCritChance * hooks.bonusManaOnCrit;
+  }
+  return baseBonus;
+}
 
 const GLOBAL_BUFF_META = {
   "buff-blue": {
@@ -1788,22 +1802,24 @@ function getTargetDummy() {
 
 function getExtrasForCurrentCategory() {
   if (state.categoryId === "craftable" && generatedItemsCatalog.length) {
-    return generatedItemsCatalog.map((item, index) => ({
-      ...buildGeneratedItemExtra(item),
-      category: "craftable",
-      order: index + 1,
-      rawName: item.rawName,
-      icon: item.icon,
-    }));
+    return generatedItemsCatalog.flatMap((item, index) =>
+      buildGeneratedItemEntries(item).map((entry, variantIndex) => ({
+        ...entry,
+        category: "craftable",
+        order: index + 1 + variantIndex * 0.01,
+      })),
+    );
   }
   return extras.filter((extra) => extra.category === state.categoryId);
 }
 
 function getSelectableItems() {
-  const runtimeItems = generatedItemsCatalog.map((item) => ({
-    id: item.apiName,
-    name: item.name,
-  }));
+  const runtimeItems = generatedItemsCatalog.flatMap((item) =>
+    buildGeneratedItemEntries(item).map((entry) => ({
+      id: entry.id,
+      name: entry.name,
+    })),
+  );
   if (runtimeItems.length) {
     return [{ id: NONE_ID, name: UI_TEXT.noItem }, ...runtimeItems];
   }
@@ -1815,12 +1831,15 @@ function getSelectableItems() {
 
 function buildGeneratedItemExtra(item) {
   const effects = item.effects ?? {};
+  const description = item.descRaw ?? "";
   const flatStats = {};
   const hooks = {};
   const override = ITEM_OVERRIDE_BY_API[item.apiName];
 
   if (typeof effects.AD === "number") flatStats.adPercent = (flatStats.adPercent ?? 0) + effects.AD;
+  if (typeof effects.AD_NotStatBar === "number") flatStats.adPercent = (flatStats.adPercent ?? 0) + effects.AD_NotStatBar;
   if (typeof effects.AP === "number") flatStats.apFlat = (flatStats.apFlat ?? 0) + effects.AP / 100;
+  if (typeof effects.AP_NotStatBar === "number") flatStats.apFlat = (flatStats.apFlat ?? 0) + effects.AP_NotStatBar / 100;
   if (typeof effects.AS === "number") flatStats.asPercent = (flatStats.asPercent ?? 0) + effects.AS / 100;
   if (typeof effects.Health === "number") flatStats.hpFlat = (flatStats.hpFlat ?? 0) + effects.Health;
   if (typeof effects.Armor === "number") flatStats.armorFlat = (flatStats.armorFlat ?? 0) + effects.Armor;
@@ -1829,21 +1848,64 @@ function buildGeneratedItemExtra(item) {
   if (typeof effects.CritDamage === "number") flatStats.critDamage = (flatStats.critDamage ?? 0) + effects.CritDamage / 100;
   if (typeof effects.ManaRegen === "number") flatStats.manaRegen = (flatStats.manaRegen ?? 0) + effects.ManaRegen;
   if (typeof effects.BonusDamage === "number") flatStats.damageAmp = (flatStats.damageAmp ?? 0) + effects.BonusDamage;
-  if (typeof effects.DamageAmp === "number") flatStats.damageAmp = (flatStats.damageAmp ?? 0) + effects.DamageAmp;
+  if (typeof effects.DamageAmp === "number") {
+    if (item.apiName === "TFT_Item_MadredsBloodrazor" || /against Tanks/i.test(description)) {
+      hooks.conditionalDamageAmpAgainstTankLike = Math.max(hooks.conditionalDamageAmpAgainstTankLike ?? 0, effects.DamageAmp);
+    } else {
+      flatStats.damageAmp = (flatStats.damageAmp ?? 0) + effects.DamageAmp;
+    }
+  }
   if (typeof effects.ModifiedADAP === "number") {
     flatStats.adPercent = (flatStats.adPercent ?? 0) + effects.ModifiedADAP;
     flatStats.apFlat = (flatStats.apFlat ?? 0) + effects.ModifiedADAP;
   }
+  if (typeof effects.BacklineADAP === "number") hooks.backlineAdApPercent = (hooks.backlineAdApPercent ?? 0) + effects.BacklineADAP / 100;
 
   if (typeof effects.FlatManaRestore === "number") hooks.bonusManaOnAttack = (hooks.bonusManaOnAttack ?? 0) + effects.FlatManaRestore;
   if (typeof effects.BaseManaOnHit === "number") hooks.bonusManaOnAttack = (hooks.bonusManaOnAttack ?? 0) + effects.BaseManaOnHit;
-  if (typeof effects.ManaOnCrit === "number") hooks.bonusManaOnAttack = (hooks.bonusManaOnAttack ?? 0) + effects.ManaOnCrit;
+  if (typeof effects.ManaOnCrit === "number") hooks.bonusManaOnCritTotal = Math.max(hooks.bonusManaOnCritTotal ?? 0, effects.ManaOnCrit);
+  if (typeof effects.ManaPercIncrease === "number") hooks.manaGainMultiplier = (hooks.manaGainMultiplier ?? 0) + effects.ManaPercIncrease;
   if (typeof effects.MRShred === "number") hooks.mrShredPercent = Math.max(hooks.mrShredPercent ?? 0, effects.MRShred / 100);
   if (typeof effects.MRShredDuration === "number") hooks.mrShredDuration = Math.max(hooks.mrShredDuration ?? 0, effects.MRShredDuration);
+  if (typeof effects.ArmorReductionPercent === "number") {
+    hooks.armorShredOnHitPercent = Math.max(hooks.armorShredOnHitPercent ?? 0, effects.ArmorReductionPercent / 100);
+  }
+  if (typeof effects.ArmorBreakDuration === "number") {
+    hooks.armorShredDuration = Math.max(hooks.armorShredDuration ?? 0, effects.ArmorBreakDuration);
+  }
   if (typeof effects.AttackSpeedPerStack === "number") {
-    hooks.attackSpeedPerAttack = effects.AttackSpeedPerStack / 100;
+    hooks.attackSpeedPerSecond = (hooks.attackSpeedPerSecond ?? 0) + effects.AttackSpeedPerStack / 100;
+    hooks.attackSpeedTickInterval = 1;
     hooks.attackSpeedCapBonus = 1.5;
   }
+  if (typeof effects.ProcAttackSpeed === "number") {
+    hooks.attackSpeedPerSecond = (hooks.attackSpeedPerSecond ?? 0) + effects.ProcAttackSpeed;
+    hooks.attackSpeedTickInterval = hooks.attackSpeedTickInterval ?? 1;
+  }
+  if (typeof effects.APPerInterval === "number") {
+    hooks.apPerInterval = (hooks.apPerInterval ?? 0) + effects.APPerInterval / 100;
+  }
+  if (typeof effects.IntervalSeconds === "number") {
+    hooks.apIntervalSeconds = effects.IntervalSeconds;
+  }
+  if (typeof effects.BuffDamageAmp === "number") {
+    hooks.damageAmpPerCritStack = Math.max(hooks.damageAmpPerCritStack ?? 0, effects.BuffDamageAmp);
+  }
+  if (typeof effects.Duration === "number" && typeof effects.BuffDamageAmp === "number") {
+    hooks.damageAmpStackDuration = Math.max(hooks.damageAmpStackDuration ?? 0, effects.Duration);
+  }
+  if (typeof effects.MaxStacks === "number" && typeof effects.BuffDamageAmp === "number") {
+    hooks.damageAmpMaxStacks = Math.max(hooks.damageAmpMaxStacks ?? 0, effects.MaxStacks);
+  }
+  if (typeof effects.ADOnAttack === "number") hooks.krakenAdPerStack = Math.max(hooks.krakenAdPerStack ?? 0, effects.ADOnAttack);
+  if (typeof effects.ASCapstone === "number") hooks.krakenAsAtCap = Math.max(hooks.krakenAsAtCap ?? 0, effects.ASCapstone);
+  if (typeof effects.MaxStacks === "number" && typeof effects.ADOnAttack === "number") {
+    hooks.krakenStackCap = Math.max(hooks.krakenStackCap ?? 0, effects.MaxStacks);
+  }
+  if (typeof effects.StackingAD === "number") hooks.titanAdPerStack = Math.max(hooks.titanAdPerStack ?? 0, effects.StackingAD);
+  if (typeof effects.StackingSP === "number") hooks.titanApPerStack = Math.max(hooks.titanApPerStack ?? 0, effects.StackingSP / 100);
+  if (typeof effects.StackCap === "number") hooks.titanStackCap = Math.max(hooks.titanStackCap ?? 0, effects.StackCap);
+  if (typeof effects.StackedAmp === "number") hooks.titanAmpAtCap = Math.max(hooks.titanAmpAtCap ?? 0, effects.StackedAmp);
 
   if (override?.flatStats) {
     Object.entries(override.flatStats).forEach(([key, value]) => {
@@ -1866,13 +1928,41 @@ function buildGeneratedItemExtra(item) {
   };
 }
 
+function buildGeneratedItemEntries(item) {
+  const baseEntry = {
+    ...buildGeneratedItemExtra(item),
+    rawName: item.rawName,
+    icon: item.icon,
+  };
+
+  if (item.apiName !== "TFT_Item_MadredsBloodrazor") {
+    return [baseEntry];
+  }
+
+  const { conditionalDamageAmpAgainstTankLike, ...baseHooks } = baseEntry.hooks ?? {};
+
+  return [
+    {
+      ...baseEntry,
+      id: `${item.apiName}__base`,
+      name: `${item.name} [基础]`,
+      hooks: baseHooks,
+    },
+    {
+      ...baseEntry,
+      id: `${item.apiName}__giant`,
+      name: `${item.name} [巨人加成]`,
+    },
+  ];
+}
+
 function getGeneratedItemExtraById(id) {
   if (!id || id === NONE_ID) return null;
   if (generatedItemExtraCache.has(id)) return generatedItemExtraCache.get(id);
-  const item = generatedItemsCatalog.find((entry) => entry.apiName === id);
-  if (!item) return null;
-  const mapped = buildGeneratedItemExtra(item);
-  generatedItemExtraCache.set(id, mapped);
+  const mapped = generatedItemsCatalog.flatMap((entry) => buildGeneratedItemEntries(entry)).find((entry) => entry.id === id) ?? null;
+  if (mapped) {
+    generatedItemExtraCache.set(id, mapped);
+  }
   return mapped;
 }
 
@@ -1977,7 +2067,10 @@ function buildCombinedExtra(extraList, name = "baseline") {
 
     const maxMergedKeys = new Set([
       "attackSpeedCapBonus",
+      "attackSpeedTickInterval",
+      "armorShredOnHitPercent",
       "armorShredDuration",
+      "apIntervalSeconds",
       "mrShredPercent",
       "mrShredDuration",
       "damageAmpStackDuration",
@@ -2040,8 +2133,7 @@ function getComputedHeroStats() {
   const backlineBonus =
     baselineExtra.hooks.backlineAdApPercent && !["tank", "fighter"].includes(hero.role) ? baselineExtra.hooks.backlineAdApPercent : 0;
   const manaGainMultiplier = 1 + (baselineExtra.hooks.manaGainMultiplier ?? 0);
-  const manaPerAttackBase =
-    role.manaPerAttack + (flat.manaPerAttack ?? 0) + (baselineExtra.hooks.bonusManaOnAttack ?? 0) + hero.base.critChance * (baselineExtra.hooks.bonusManaOnCrit ?? 0);
+  const manaPerAttackBase = role.manaPerAttack + (flat.manaPerAttack ?? 0) + expectedBonusManaPerAttack(hero.base.critChance, baselineExtra.hooks);
 
   return {
     ad: (hero.base.ad[starIndex] * (1 + (flat.adPercent ?? 0)) + (flat.adFlat ?? 0)) * (1 + backlineBonus),
@@ -2612,3 +2704,4 @@ function refreshAll() {
 
 initControls();
 refreshAll();
+
