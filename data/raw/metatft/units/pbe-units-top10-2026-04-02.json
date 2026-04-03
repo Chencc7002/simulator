@@ -1,0 +1,77 @@
+{
+  "source": {
+    "pageUrl": "https://www.metatft.com/units",
+    "statsApi": "https://api-hc.metatft.com/tft-stat-api/units?queue=PBE&patch=current&days=3&permit_filter_adjustment=true",
+    "fetchedAt": "2026-04-02",
+    "sourcePatch": "17.1",
+    "sourceSet": "TFTSet17",
+    "queue": "pbe"
+  },
+  "selectionRule": {
+    "rankingMetric": "average placement",
+    "excludeUnits": ["tft17_bardfollower", "TFT17_PVE_ElderDragon"],
+    "note": "Excluded summons and non-buyable units before selecting the first three playable units."
+  },
+  "top10Playable": [
+    {
+      "unit": "TFT17_Shen",
+      "avgPlace": 3.3855,
+      "games": 338677,
+      "places": [81737, 64848, 50365, 40976, 34072, 28687, 23125, 14189]
+    },
+    {
+      "unit": "TFT17_Jhin",
+      "avgPlace": 3.4793,
+      "games": 293193,
+      "places": [66360, 55339, 42884, 36122, 30897, 26669, 21362, 12992]
+    },
+    {
+      "unit": "TFT17_Morgana",
+      "avgPlace": 3.5863,
+      "games": 249292,
+      "places": [54043, 45487, 36156, 30010, 26386, 23413, 20215, 13116]
+    },
+    {
+      "unit": "TFT17_Bard",
+      "avgPlace": 3.6066,
+      "games": 235253,
+      "places": [51114, 40413, 33844, 29673, 26242, 22855, 18924, 11708]
+    },
+    {
+      "unit": "TFT17_Blitzcrank",
+      "avgPlace": 3.7033,
+      "games": 320032,
+      "places": [62588, 55125, 47182, 41327, 36886, 32349, 27080, 16904]
+    },
+    {
+      "unit": "TFT17_Fiora",
+      "avgPlace": 3.8037,
+      "games": 171415,
+      "places": [30902, 31561, 24315, 20946, 18690, 17423, 16042, 11220]
+    },
+    {
+      "unit": "TFT17_Vex",
+      "avgPlace": 3.8407,
+      "games": 134054,
+      "places": [24760, 23043, 18639, 16308, 15023, 14356, 12935, 8787]
+    },
+    {
+      "unit": "TFT17_Zed",
+      "avgPlace": 3.8805,
+      "games": 17873,
+      "places": [3198, 3130, 2437, 2152, 1945, 1942, 1793, 1239]
+    },
+    {
+      "unit": "TFT17_Galio",
+      "avgPlace": 3.9297,
+      "games": 188199,
+      "places": [30703, 27806, 27123, 24935, 22769, 21440, 19268, 14155]
+    },
+    {
+      "unit": "TFT17_Jax",
+      "avgPlace": 4.0068,
+      "games": 164312,
+      "places": [28971, 20343, 18731, 17953, 18318, 19057, 20245, 20694]
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+{
+  locale: "zh-CN",
+
+  policy: {
+    websiteDisplayLanguage: "zh-CN",
+    rawLookupLanguage: "en_us",
+    notes: [
+      "The website should only render Chinese strings.",
+      "Raw MetaTFT source fields may remain in English for auditability and source verification.",
+      "Generated runtime data should prefer Chinese display fields and only fall back to English in internal tooling.",
+    ],
+  },
+
+  roles: {
+    APTank: "\u9b54\u6cd5\u5766\u514b",
+    ADTank: "\u653b\u51fb\u5766\u514b",
+    ADFighter: "\u653b\u51fb\u6218\u58eb",
+    APCaster: "\u9b54\u6cd5\u65bd\u6cd5\u8005",
+    ADCarry: "\u653b\u51fb\u5c04\u624b",
+    ADSpecialist: "\u653b\u51fb\u7279\u5316\u8005",
+    APReaper: "\u9b54\u6cd5\u523a\u5ba2",
+    ADCaster: "\u653b\u51fb\u65bd\u6cd5\u8005",
+    ADReaper: "\u653b\u51fb\u523a\u5ba2",
+    APCarry: "\u9b54\u6cd5\u5c04\u624b",
+    APFighter: "\u9b54\u6cd5\u6218\u58eb",
+    HFighter: "\u6df7\u5408\u6218\u58eb",
+  },
+
+  champions: {
+    TFT17_AurelionSol: {
+      name: "\u5965\u745e\u5229\u5b89\u00b7\u7d22\u5c14",
+      shortName: "\u7d22\u5c14",
+    },
+    TFT17_Bard: {
+      name: "\u5df4\u5fb7",
+      shortName: "\u5df4\u5fb7",
+    },
+    TFT17_Blitzcrank: {
+      name: "\u5e03\u91cc\u8328",
+      shortName: "\u673a\u5668\u4eba",
+    },
+    TFT17_Corki: {
+      name: "\u5e93\u5947",
+      shortName: "\u5e93\u5947",
+    },
+    TFT17_Fiora: {
+      name: "\u83f2\u5965\u5a1c",
+      shortName: "\u5251\u59ec",
+    },
+    TFT17_Graves: {
+      name: "\u683c\u96f7\u798f\u65af",
+      shortName: "\u7537\u67aa",
+    },
+    TFT17_Jhin: {
+      name: "\u70ec",
+      shortName: "\u70ec",
+    },
+    TFT17_Karma: {
+      name: "\u5361\u5c14\u739b",
+      shortName: "\u5361\u739b",
+    },
+    TFT17_Kindred: {
+      name: "\u5343\u73cf",
+      shortName: "\u5343\u73cf",
+    },
+    TFT17_Leblanc: {
+      name: "\u4e50\u8299\u5170",
+      shortName: "\u5996\u59ec",
+    },
+    TFT17_MasterYi: {
+      name: "\u6613",
+      shortName: "\u6613",
+    },
+    TFT17_Morgana: {
+      name: "\u83ab\u7518\u5a1c",
+      shortName: "\u83ab\u7518\u5a1c",
+    },
+    TFT17_Nami: {
+      name: "\u5a1c\u7f8e",
+      shortName: "\u5a1c\u7f8e",
+    },
+    TFT17_Riven: {
+      name: "\u9510\u96ef",
+      shortName: "\u9510\u96ef",
+    },
+    TFT17_Shen: {
+      name: "\u614e",
+      shortName: "\u614e",
+    },
+    TFT17_Sona: {
+      name: "\u5a11\u5a1c",
+      shortName: "\u7434\u5973",
+    },
+    TFT17_Vex: {
+      name: "\u8587\u53e4\u4e1d",
+      shortName: "\u8587\u53e4\u4e1d",
+    },
+    TFT17_Xayah: {
+      name: "\u971e",
+      shortName: "\u971e",
+    },
+    TFT17_Zed: {
+      name: "\u52ab",
+      shortName: "\u52ab",
+    },
+  },
+
+  fieldsToTranslateLater: {
+    traits: [
+      "Bulwark",
+      "Bastion",
+      "Dark Star",
+      "Eradicator",
+      "Sniper",
+      "Dark Lady",
+      "Meeple",
+      "Channeler",
+      "Party Animal",
+      "Space Groove",
+      "Vanguard",
+      "Divine Duelist",
+      "Anima",
+      "Marauder",
+      "Doomer",
+      "Factory New",
+      "Commander",
+      "Psionic",
+      "Shepherd",
+      "N.O.V.A.",
+      "Challenger",
+      "Fateweaver",
+      "Voyager",
+      "Mecha",
+      "Replicator",
+      "Arbiter",
+      "Galaxy Hunter",
+      "Timebreaker",
+      "Rogue",
+    ],
+    abilityNames: [
+      "Deathbeam",
+      "Asteroid Blaster",
+      "Singularity",
+      "Fracture Reality",
+      "Psi Strikes",
+      "Bubble Pop",
+      "Reality Tear",
+      "Space Opera",
+      "Dark Form",
+      "Ultra Friendly Object",
+      "Perfect Bladework",
+      "Lend Me a Hand, Shadow!",
+      "Quantum Clone",
+      "Collateral Damage",
+      "Psionic Crush",
+      "Cosmic Pursuit",
+      "Stellar Ricochet",
+      "Party Crasher",
+      "Time Warp",
+    ],
+    notes: [
+      "These fields should eventually be maintained as Chinese display strings as well.",
+      "Keep them separate from the raw lookup source to reduce source-tracing mistakes.",
+    ],
+  },
+}

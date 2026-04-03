@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TFT Set 17 ChampionSelector</title>
+    <link rel="stylesheet" href="./style.css?v=20260402b" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="sidebar-top">
+          <div class="sidebar-title-row">
+            <span class="sidebar-app-label">app</span>
+            <button class="ghost-icon" type="button" aria-label="&#20851;&#38381;">&times;</button>
+          </div>
+          <button class="app-link active" type="button">ChampionSelector</button>
+        </div>
+
+        <div class="sidebar-body">
+          <section class="sidebar-section">
+            <h2 class="sidebar-heading">&#33521;&#38596;</h2>
+
+            <div class="hero-form-row">
+              <label class="field">
+                <span class="field-label">&#33521;&#38596;</span>
+                <select id="hero-select" class="field-control dark"></select>
+              </label>
+              <label class="field level-field">
+                <span class="field-label">Level</span>
+                <select id="star-select" class="field-control dark">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </label>
+            </div>
+
+            <details class="accordion">
+              <summary>&#39069;&#22806;&#25910;&#30410; options / bonus stats</summary>
+              <div class="bonus-grid">
+                <label class="field">
+                  <span class="field-label">&#27861;&#24378;</span>
+                  <input id="bonus-ap" type="number" class="field-control dark" value="0" min="0" step="0.05" />
+                </label>
+                <label class="field">
+                  <span class="field-label">&#25915;&#20987;&#21147;</span>
+                  <input id="bonus-ad" type="number" class="field-control dark" value="0" min="0" step="1" />
+                </label>
+                <label class="field">
+                  <span class="field-label">&#25915;&#36895;</span>
+                  <input id="bonus-as" type="number" class="field-control dark" value="0" min="0" step="0.05" />
+                </label>
+                <label class="field">
+                  <span class="field-label">DmgAmp</span>
+                  <input id="bonus-dmgamp" type="number" class="field-control dark" value="0" min="0" step="0.01" />
+                </label>
+              </div>
+            </details>
+
+            <label class="field">
+              <span class="field-label">Current stage</span>
+              <select id="stage-select" class="field-control dark">
+                <option value="2-1">2-1</option>
+                <option value="3-2">3-2</option>
+                <option value="4-1" selected>4-1</option>
+                <option value="5-1">5-1</option>
+                <option value="6-1">6-1</option>
+              </select>
+            </label>
+
+            <div class="slider-block">
+              <div class="slider-header">
+                <span class="field-label">Tactician Level</span>
+                <span id="tactician-level-value" class="slider-value">4</span>
+              </div>
+              <input id="tactician-level" type="range" min="3" max="10" value="4" class="slider" />
+              <div class="slider-scale">
+                <span>3</span>
+                <span>10</span>
+              </div>
+            </div>
+
+            <h3 class="sidebar-subheading">Global &#35013;&#22791;</h3>
+
+            <label class="field">
+              <span class="field-label">&#35013;&#22791; 1</span>
+              <select id="global-item-1" class="field-control dark"></select>
+            </label>
+
+            <label class="field">
+              <span class="field-label">&#35013;&#22791; 2</span>
+              <select id="global-item-2" class="field-control dark"></select>
+            </label>
+
+            <label class="field">
+              <span class="field-label">&#35013;&#22791; 3</span>
+              <select id="global-item-3" class="field-control dark"></select>
+            </label>
+
+            <h3 class="sidebar-subheading">Global Buffs</h3>
+
+            <div class="global-buffs-panel">
+              <div id="global-buff-list"></div>
+
+              <div class="slider-block">
+                <div class="slider-header">
+                  <span class="field-label">Number of Buffs</span>
+                  <span id="buff-count-value" class="slider-value">3</span>
+                </div>
+                <input id="buff-count" type="range" min="1" max="10" value="3" class="slider" />
+                <div class="slider-scale">
+                  <span>1</span>
+                  <span>10</span>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="sidebar-subheading">&#30446;&#26631;&#20551;&#20154;</h3>
+
+            <div class="dummy-grid">
+              <label class="field">
+                <span class="field-label">HP</span>
+                <input id="target-hp" type="number" class="field-control dark" min="1" step="50" />
+              </label>
+
+              <label class="field">
+                <span class="field-label">&#25252;&#30002;</span>
+                <input id="target-armor" type="number" class="field-control dark" min="0" step="5" />
+              </label>
+
+              <label class="field">
+                <span class="field-label">&#39764;&#25239;</span>
+                <input id="target-mr" type="number" class="field-control dark" min="0" step="5" />
+              </label>
+            </div>
+          </section>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="content-topnav">
+          <button class="topnav-link active" type="button">&#35013;&#22791;</button>
+        </div>
+
+        <section class="hero-header">
+          <h1 id="hero-vs-title" class="hero-title"></h1>
+          <p class="hero-note">
+            Most cast times/manalock times are guesses. Units can cast after they have completed 30% of an
+            autoattack. Champs must attack at least once between casts. Simulator is probably not very accurate to
+            true gameplay at high attack speeds.
+          </p>
+        </section>
+
+        <section class="stats-panel">
+          <h2 class="section-title">Base stats</h2>
+          <div id="base-stats-grid" class="base-stats-grid"></div>
+          <label class="display-dps-toggle">
+            <input id="display-dps-toggle" type="checkbox" />
+            <span>Display DPS</span>
+          </label>
+        </section>
+
+        <section class="table-panel">
+          <nav id="category-tabs" class="category-tabs" aria-label="&#20998;&#31867;&#20999;&#25442;"></nav>
+
+          <div class="table-scroll">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th class="id-col">#</th>
+                  <th>&#39069;&#22806;&#25910;&#30410;</th>
+                  <th id="col-five">&#53;&#31186;&#36755;&#20986;</th>
+                  <th>&#49;&#48;&#31186;&#36755;&#20986;</th>
+                  <th id="col-fifteen">&#49;&#53;&#31186;&#36755;&#20986;</th>
+                  <th>&#50;&#48;&#31186;&#36755;&#20986;</th>
+                  <th>&#50;&#53;&#31186;&#36755;&#20986;</th>
+                  <th>&#39069;&#22806;&#36755;&#20986; (25s)</th>
+                  <th>&#21152;&#20837;&#23545;&#27604;</th>
+                </tr>
+              </thead>
+              <tbody id="results-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="chart-panel" class="chart-panel hidden">
+          <div class="chart-main">
+            <svg id="damage-chart" class="damage-chart" viewBox="0 0 960 600" role="img" aria-label="&#20260;&#23475;&#26354;&#32447;"></svg>
+          </div>
+
+          <aside class="chart-side">
+            <section class="side-card">
+              <div class="side-card-header">
+                <h3 class="side-title">Index Log</h3>
+                <select id="log-select" class="field-control dark compact"></select>
+              </div>
+              <div class="log-table-wrap">
+                <table class="log-table">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>Dmg</th>
+                      <th>Type</th>
+                      <th>&#25915;&#36895;</th>
+                      <th>&#27861;&#21147;&#20540;</th>
+                    </tr>
+                  </thead>
+                  <tbody id="log-body"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="side-card">
+              <h3 class="side-title centered">Damage Distribution</h3>
+              <div class="donut-wrap">
+                <div id="donut-chart" class="donut-chart" aria-hidden="true"></div>
+                <div id="donut-legend" class="donut-legend"></div>
+              </div>
+            </section>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <script>
+      (() => {
+        const buffList = document.getElementById("global-buff-list");
+        const buffCountInput = document.getElementById("buff-count");
+        const buffCountValue = document.getElementById("buff-count-value");
+
+        if (!buffList || !buffCountInput || !buffCountValue) return;
+
+        if (!buffList.children.length) {
+          const fallbackRows = Array.from({ length: 10 }, (_, index) => {
+            const rowNumber = index + 1;
+            return `
+              <div class="buff-row" data-buff-row="${index}">
+                <div class="buff-row-grid">
+                  <label class="field buff-main-field">
+                    <span class="field-label">Buff ${rowNumber}</span>
+                    <select class="field-control dark">
+                      <option>&#26080;&#24378;&#21270;</option>
+                    </select>
+                  </label>
+                  <label class="field buff-level-field">
+                    <span class="field-label">Level</span>
+                    <select class="field-control dark" disabled>
+                      <option>1</option>
+                    </select>
+                  </label>
+                  <label class="field buff-aux-field">
+                    <span class="field-label">&#21442;&#25968;</span>
+                    <input type="number" class="field-control dark" value="0" disabled />
+                  </label>
+                </div>
+              </div>
+            `;
+          }).join("");
+
+          buffList.innerHTML = fallbackRows;
+        }
+
+        const syncFallbackBuffRows = () => {
+          const count = Number(buffCountInput.value || 1);
+          buffCountValue.textContent = String(count);
+          [...buffList.querySelectorAll("[data-buff-row]")].forEach((row, index) => {
+            row.classList.toggle("buff-row-hidden", index >= count);
+          });
+        };
+
+        buffCountInput.addEventListener("input", syncFallbackBuffRows);
+        buffCountInput.addEventListener("change", syncFallbackBuffRows);
+        syncFallbackBuffRows();
+      })();
+    </script>
+  <script defer src="./data/generated/champions.browser.js?v=20260402c"></script>
+  <script defer src="./data/generated/items.browser.js?v=20260402e"></script>
+  <script defer src="./app-bundle.js?v=20260403b"></script>
+  </body>
+</html>

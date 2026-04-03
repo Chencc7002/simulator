@@ -1,0 +1,175 @@
+{
+  id: "tft17-bard",
+  apiName: "TFT17_Bard",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Bard?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Bard]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Bard",
+    cost: 5,
+    role: {
+      key: "{32cdc033}",
+      apiName: "APCaster",
+      displayName: "Magic Caster",
+    },
+    traits: ["Meeple", "Channeler"],
+    avatarUrl: "ASSETS/Characters/TFT17_Bard/Skins/Base/Images/TFT17_Bard_splash_tile_8.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 900,
+    ad: 30,
+    as: 0.85,
+    armor: 40,
+    mr: 40,
+    range: 4,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 65,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 900,
+      ad: 30,
+      as: 0.85,
+      armor: 40,
+      mr: 40,
+      range: 4,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 65,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Ultra Friendly Object",
+    type: null,
+    description:
+      "Summon a flying saucer over the current target that lasts @Duration@ seconds. Each second it deals <magicDamage>@ModifiedDamagePerSecond@&nbsp;(%i:scaleAP%)</magicDamage>&nbsp;magic damage to the target, plus <magicDamage>@ModifiedSplitDamagePerSecond@&nbsp;(%i:scaleAP%)</magicDamage>&nbsp;magic damage split between all enemies within @SecondaryHexRange@&nbsp;hex. The saucer deals <TFTBonus>@TankDamageIncrease*100@%</TFTBonus> increased damage to Tanks.<br><br>If an enemy under the UFO dies, Bard has a <TFTBonus>@AbductChance*100@%&nbsp; </TFTBonus>chance to abduct them and create a 1-star copy on your bench.<br><br><mainText enabled=TFT17_Astronaut_IsActive alternate=rules><spellActive enabled=TFT17_Astronaut_IsActive alternate=rules>Meep bonus:</spellActive> On combat start, grant the nearest <TFTBonus>@ModifiedNumAllies@</TFTBonus>&nbsp;(%i:set14AmpIcon%) Meeple allies an additional Meep.</mainText><br><br><rules>Friends abducted: @TFTUnitProperty.:TFT17_Bard_FriendsAbducted@</rules>",
+    baseValues: {
+      DamagePerSecond: [270, 405, 3000],
+      SplitDamagePerSecond: [135, 205, 1500],
+      Duration: [4, 4, 4],
+      AbductChance: [0.2, 0.3, 1],
+      PVEAbductionChanceModifier: [1, 1, 1],
+      MeepsPerMeep: [1, 1, 1],
+      TankDamageIncrease: [0.5, 0.5, 0.5],
+      SecondaryHexRange: [1, 1, 1],
+      CanAbductSecondaryTargets: [1, 1, 1],
+    },
+    scalings: {
+      ModifiedDamagePerSecond: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "DamagePerSecond",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedSplitDamagePerSecond: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "SplitDamagePerSecond",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedNumAllies: [
+        {
+          mBuffName: "{743a49ea}",
+          mCoefficient: 1,
+          type: "BuffCounterByCoefficientCalculationPart",
+        },
+      ],
+      AbductChanceDisplay: [
+        {
+          mRatio: 0.01,
+          displayAsPercent: true,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "AbductChance",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "DamagePerSecond",
+        nameOverride: "Spell_TFT17_BardSpell_DamagePerSecond",
+        name: "Damage Per Second: <magicDamage>@ModifiedDamagePerSecond@</magicDamage> = @DamagePerSecond@ %i:scaleAP%",
+      },
+      {
+        type: "SplitDamagePerSecond",
+        nameOverride: "Spell_TFT17_BardSpell_SplitDamagePerSecond",
+        name: "Damage Per Second: <magicDamage>@ModifiedSplitDamagePerSecond@</magicDamage> = @SplitDamagePerSecond@ %i:scaleAP%",
+      },
+      {
+        type: "AbductChance",
+        multiplier: 100,
+        nameOverride: "Spell_TFT17_BardSpell_AbductionChance",
+        Style: 1,
+        name: "Abduction Chance: <TFTBonus>@AbductChance*100@%</TFTBonus>",
+      },
+      {
+        type: "MeepsPerMeep",
+        nameOverride: "Spell_TFT17_BardSpell_MeepsPerMeep",
+        Style: 2,
+        name: "Meeps granted: 1 per @MeepsPerMeep@ (%i:set14AmpIcon%)",
+      },
+    ],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.92,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This file follows the same split as the other sample champions: confirmed base stats in `stats`, manually maintained panel arrays in `displayStatsByStar`.",
+      "The 1-star base stats are confirmed; the 1/2/3-star display arrays shown on the page are not yet directly sourced here.",
+    ],
+  },
+}

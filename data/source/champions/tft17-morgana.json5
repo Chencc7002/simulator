@@ -1,0 +1,156 @@
+{
+  id: "tft17-morgana",
+  apiName: "TFT17_Morgana",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Morgana?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Morgana]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Morgana",
+    cost: 5,
+    role: {
+      key: "{44de5928}",
+      apiName: "APFighter",
+      displayName: "Magic Fighter",
+    },
+    traits: ["Dark Lady"],
+    avatarUrl: "ASSETS/Characters/TFT17_Morgana/Skins/Base/Images/TFT17_Morgana_splash_tile_50.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 900,
+    ad: 50,
+    as: 0.9,
+    armor: 40,
+    mr: 40,
+    range: 2,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 20,
+    manaMax: 60,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 900,
+      ad: 50,
+      as: 0.9,
+      armor: 40,
+      mr: 40,
+      range: 2,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 20,
+      manaMax: 60,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Dark Form",
+    type: null,
+    description:
+      "<spellPassive>Passive:</spellPassive> Heal for @OmnivampPercent*100@% of Ability damage.<br><br><spellActive>Active:</spellActive> Transform into Dark Form for @Duration@ seconds, gaining <TFTBonus>@ModifiedShield@&nbsp;(%i:scaleAP%)</TFTBonus> Shield for the duration. While in Dark Form, tether the @NumEnemies@ nearest enemies, dealing <magicDamage>@ModifiedDamagePerSecond@&nbsp;(%i:scaleAP%)</magicDamage> magic damage per second to each one. <br><br>At the end of the transfomation, deal <magicDamage>@ModifiedFinalDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage to all tethered enemies.",
+    baseValues: {
+      Shield: [250, 350, 4000],
+      TetherDamagePerSecond: [70, 105, 1500],
+      NumEnemies: [3, 3, 3],
+      FinalDamage: [270, 405, 4000],
+      OmnivampPercent: [0.2, 0.2, 0.2],
+      Duration: [5, 5, 5],
+    },
+    scalings: {
+      ModifiedDamagePerSecond: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "TetherDamagePerSecond",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedFinalDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "FinalDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedShield: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "Shield",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "Shield",
+        nameOverride: "Spell_TFT17_MorganaSpell_",
+        name: "Shield: <TFTBonus>@ModifiedShield@ (%i:scaleAP%)</TFTBonus>",
+      },
+      {
+        type: "TetherDamagePerSecond",
+        nameOverride: "TFT_AP_MagicDamage_PerSecond",
+        name: "Damage Per Second: <magicDamage>@ModifiedDamagePerSecond@ (%i:scaleAP%)</magicDamage>",
+      },
+      {
+        type: "FinalDamage",
+        nameOverride: "Spell_TFT17_MorganaSpell_FinalDamage",
+        name: "Delayed Damage: <magicDamage>@ModifiedFinalDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+    ],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.92,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+    ],
+    notes: [
+      "Core stats and ability values are now confirmed from MetaTFT lookup JSON rather than ranking data.",
+      "This file intentionally prioritizes the two useful panels: skill data and stats data.",
+      "The 1-star base stats are confirmed; the 1/2/3-star display arrays shown on the page are not yet directly sourced here.",
+    ],
+  },
+}

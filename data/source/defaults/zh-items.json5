@@ -1,0 +1,92 @@
+{
+  locale: "zh-CN",
+
+  items: {
+    TFT_Item_AdaptiveHelm: {
+      name: "\u9002\u5e94\u6027\u5934\u76d4",
+    },
+    TFT_Item_ArchangelsStaff: {
+      name: "\u5927\u5929\u4f7f\u4e4b\u6756",
+    },
+    TFT_Item_Bloodthirster: {
+      name: "\u996e\u8840\u5251",
+    },
+    TFT_Item_BlueBuff: {
+      name: "\u84dd\u9738\u7b26",
+    },
+    TFT_Item_Deathblade: {
+      name: "\u6b7b\u4ea1\u4e4b\u5203",
+    },
+    TFT_Item_GuardianAngel: {
+      name: "\u591c\u4e4b\u950b\u5203",
+    },
+    TFT_Item_GuinsoosRageblade: {
+      name: "\u9b3c\u7d22\u7684\u72c2\u66b4\u4e4b\u5203",
+    },
+    TFT_Item_HextechGunblade: {
+      name: "\u6d77\u514b\u65af\u79d1\u6280\u67aa\u5203",
+    },
+    TFT_Item_InfinityEdge: {
+      name: "\u65e0\u5c3d\u4e4b\u5203",
+    },
+    TFT_Item_IonicSpark: {
+      name: "\u79bb\u5b50\u706b\u82b1",
+    },
+    TFT_Item_JeweledGauntlet: {
+      name: "\u73e0\u5149\u62a4\u624b",
+    },
+    TFT_Item_LastWhisper: {
+      name: "\u6700\u540e\u7684\u8f7b\u8bed",
+    },
+    TFT_Item_Leviathan: {
+      name: "\u7eb3\u4ec0\u4e4b\u7259",
+    },
+    TFT_Item_MadredsBloodrazor: {
+      name: "\u5de8\u4eba\u6740\u624b",
+    },
+    TFT_Item_Morellonomicon: {
+      name: "\u83ab\u96f7\u6d1b\u79d8\u5178",
+    },
+    TFT_Item_PowerGauntlet: {
+      name: "\u6253\u51fb\u8005\u8fde\u67b7",
+    },
+    TFT_Item_Quicksilver: {
+      name: "\u6c34\u94f6",
+    },
+    TFT_Item_RabadonsDeathcap: {
+      name: "\u706d\u4e16\u8005\u7684\u6b7b\u4ea1\u4e4b\u5e3d",
+    },
+    TFT_Item_RapidFireCannon: {
+      name: "\u7ea2\u9738\u7b26",
+    },
+    TFT_Item_RunaansHurricane: {
+      name: "\u6d77\u5996\u4e4b\u6012",
+    },
+    TFT_Item_SpearOfShojin: {
+      name: "\u6714\u6781\u4e4b\u77db",
+    },
+    TFT_Item_StatikkShiv: {
+      name: "\u865a\u7a7a\u4e4b\u6756",
+    },
+    TFT_Item_SteraksGage: {
+      name: "\u65af\u7279\u62c9\u514b\u7684\u6311\u6218\u62a4\u624b",
+    },
+    TFT_Item_TitansResolve: {
+      name: "\u6cf0\u5766\u7684\u575a\u51b3",
+    },
+    TFT_Item_UnstableConcoction: {
+      name: "\u6b63\u4e49\u4e4b\u624b",
+    },
+  },
+
+  components: {
+    TFT_Item_BFSword: "\u66b4\u98ce\u5927\u5251",
+    TFT_Item_ChainVest: "\u9501\u5b50\u7532",
+    TFT_Item_GiantsBelt: "\u5de8\u4eba\u8170\u5e26",
+    TFT_Item_NeedlesslyLargeRod: "\u65e0\u7528\u5927\u68d2",
+    TFT_Item_NegatronCloak: "\u8d1f\u6781\u6597\u7bf7",
+    TFT_Item_RecurveBow: "\u53cd\u66f2\u4e4b\u5f13",
+    TFT_Item_SparringGloves: "\u62f3\u5957",
+    TFT_Item_TearOfTheGoddess: "\u5973\u795e\u4e4b\u6cea",
+  },
+}

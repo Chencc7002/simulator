@@ -1,0 +1,198 @@
+{
+  id: "tft17-corki",
+  apiName: "TFT17_Corki",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Corki?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Corki]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Corki",
+    cost: 4,
+    role: {
+      key: "{2ae695df}",
+      apiName: "ADCaster",
+      displayName: "Attack Caster",
+    },
+    traits: ["Meeple", "Fateweaver"],
+    avatarUrl: "ASSETS/Characters/TFT17_Corki/Skins/Base/Images/TFT17_Corki_splash_tile_26.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 850,
+    ad: 45,
+    as: 0.8,
+    armor: 30,
+    mr: 30,
+    range: 4,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 60,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 850,
+      ad: 45,
+      as: 0.8,
+      armor: 30,
+      mr: 30,
+      range: 4,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 60,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Asteroid Blaster",
+    type: null,
+    description:
+      "Strafe to a nearby position, unleashing @BaseMissiles@ missiles split between the target and all enemies within two hexes. Missiles deal <physicalDamage>@ModifiedDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage with a @ProcChance@%<ShowIf.TFT17_Fateweaver_LuckyAbility> <TFTKeyword>Lucky</TFTKeyword></ShowIf.TFT17_Fateweaver_LuckyAbility> chance of firing a mega missile that deals <physicalDamage>@ModifiedProcDamage@&nbsp;(%i:scaleAD%)</physicalDamage> instead.<br><br><mainText enabled=TFT17_Astronaut_IsActive alternate=rules><spellActive enabled=TFT17_Astronaut_IsActive alternate=rules>Meep Bonus:</spellActive><TFTBonus><ShowIfNot.TFT17_Astronaut_IsActive></ShowIfNot.TFT17_Astronaut_IsActive><ShowIf.TFT17_Astronaut_IsActive></ShowIf.TFT17_Astronaut_IsActive></TFTBonus> Every <TFTBonus>@ModifiedMeepCooldown@ (%i:set14AmpIcon%)</TFTBonus> seconds, launch an Explosive Meep at the target, dealing <physicalDamage>@ModifiedMeepDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage in a one hex radius on impact.</mainText><br><br><ShowIf.TFT17_Fateweaver_LuckyAbility><rules>Lucky: Check twice and take the better outcome.</rules></ShowIf.TFT17_Fateweaver_LuckyAbility>",
+    baseValues: {
+      BaseMissiles: [21, 21, 21],
+      MissileAD: [26, 40, 280],
+      MissileAP: [4, 6, 24],
+      ProcChance: [20, 20, 20],
+      ProcDamageMult: [3, 3, 3],
+      MissilesPerLaunchAttack: [5, 5, 5],
+      BaseMeepCooldown: [8, 8, 8],
+      CooldownReductionPerAstro: [1, 1, 1],
+      MeepDamage: [100, 150, 900],
+      CDRPerMeep: [0.1, 0.1, 0.1],
+    },
+    scalings: {
+      ModifiedDamage: [
+        {
+          type: "SumOfSubPartsCalculationPart",
+          parts: [
+            {
+              mRatio: 1,
+              mStat: 3,
+              type: "SubPartScaledProportionalToStat",
+              part: {
+                name: "MissileAD",
+                type: "NamedDataValueCalculationPart",
+              },
+            },
+            {
+              mRatio: 0.01,
+              type: "SubPartScaledProportionalToStat",
+              part: {
+                name: "MissileAP",
+                type: "NamedDataValueCalculationPart",
+              },
+            },
+          ],
+        },
+      ],
+      ModifiedProcDamage: [
+        {
+          type: "ProductOfSubPartsCalculationPart",
+          part1: {
+            mSpellCalculationKey: "ModifiedDamage",
+            type: "{f3cbe7b2}",
+          },
+          part2: {
+            name: "ProcDamageMult",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedMeepCooldown: [
+        {
+          type: "multiplier",
+          value: {
+            name: "{ab39c5d6}",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedMeepDamage: [
+        {
+          mRatio: 1,
+          mStat: 3,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "MeepDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "MissileAP",
+        nameOverride: "Spell_TFT17_CorkiSpell_MissileAP",
+        name: "Missile Damage: %i:scaleAP%",
+      },
+      {
+        type: "MissileAD",
+        nameOverride: "Spell_TFT17_CorkiSpell_MissileTotal",
+        name: "Missile Damage: <physicalDamage>@ModifiedDamage@</physicalDamage> = <scaleLevel>@MissileAD@</scaleLevel> %i:scaleAD% + <scaleLevel>@MissileAP@</scaleLevel> %i:scaleAP%",
+      },
+      {
+        type: "ProcDamageMult",
+        nameOverride: "Spell_TFT17_CorkiSpell_MegaDamage",
+        Style: 2,
+        name: "Mega Damage: <physicalDamage>@ModifiedProcDamage@</physicalDamage> = @ProcDamageMult*100@% of <physicalDamage>@ModifiedDamage@</physicalDamage>",
+      },
+      {
+        type: "BaseMeepCooldown",
+        nameOverride: "Spell_TFT17_CorkiSpell_MeepCooldown",
+        Style: 2,
+        name: "Meep Cooldown: <TFTBonus>@ModifiedMeepCooldown@</TFTBonus> = @BaseMeepCooldown@ reduced by @CDRPerMeep*100@% per %i:set14AmpIcon%",
+      },
+      {
+        type: "MeepDamage",
+        nameOverride: "Spell_TFT17_CorkiSpell_BigOneDamage",
+        name: "Meep Damage: <physicalDamage>@ModifiedMeepDamage@ (%i:scaleAD%)</physicalDamage>",
+      },
+    ],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.9,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: attack caster rather than tank.",
+    ],
+  },
+}

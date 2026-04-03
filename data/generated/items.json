@@ -1,0 +1,635 @@
+[
+  {
+    "apiName": "TFT_Item_AdaptiveHelm",
+    "name": "适应性头盔",
+    "rawName": "Adaptive Helm",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_AdaptiveHelm.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_NegatronCloak",
+        "name": "负极斗篷"
+      },
+      {
+        "apiName": "TFT_Item_TearOfTheGoddess",
+        "name": "女神之泪"
+      }
+    ],
+    "effects": {
+      "ManaRegen": 3,
+      "FrontlineResists": 30,
+      "BacklineADAP": 10,
+      "MagicResist": 20,
+      "ManaPercIncrease": 0.15000000596046448
+    },
+    "descRaw": "Gain an additional @ManaPercIncrease*100@% Mana from all sources. The holder gains an additional bonus based on their Role:<br><br>Tanks and Fighters: Gain @FrontlineResists@ Armor and Magic Resistance.<br><br>Other Roles: Gain @BacklineADAP@% Attack Damage and Ability Power. ",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_ArchangelsStaff",
+    "name": "大天使之杖",
+    "rawName": "Archangel's Staff",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_ArchangelsStaff.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_NeedlesslyLargeRod",
+        "name": "无用大棒"
+      },
+      {
+        "apiName": "TFT_Item_TearOfTheGoddess",
+        "name": "女神之泪"
+      }
+    ],
+    "effects": {
+      "ManaRegen": 1,
+      "IntervalSeconds": 5,
+      "APPerInterval": 20,
+      "AP": 30
+    },
+    "descRaw": "Combat start: Gain @APPerInterval@% Ability Power every @IntervalSeconds@ seconds in combat.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_Bloodthirster",
+    "name": "饮血剑",
+    "rawName": "Bloodthirster",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_Bloodthirster.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      },
+      {
+        "apiName": "TFT_Item_NegatronCloak",
+        "name": "负极斗篷"
+      }
+    ],
+    "effects": {
+      "AD": 0.15000000596046448,
+      "AP": 15,
+      "StatOmnivamp": 0.20000000298023224,
+      "HealthThreshold": 40,
+      "ShieldHealthPercent": 25,
+      "ShieldDuration": 5,
+      "MagicResist": 20,
+      "LifeSteal": 20
+    },
+    "descRaw": "Once per combat at @HealthThreshold@% Health, gain a @ShieldHealthPercent@% max Health Shield that lasts up to @ShieldDuration@ seconds.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_BlueBuff",
+    "name": "蓝霸符",
+    "rawName": "Blue Buff",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_BlueBuff.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_TearOfTheGoddess",
+        "name": "女神之泪"
+      },
+      {
+        "apiName": "TFT_Item_TearOfTheGoddess",
+        "name": "女神之泪"
+      }
+    ],
+    "effects": {
+      "ManaRegen": 5,
+      "AD": 0.15000000596046448,
+      "AP": 15,
+      "ModifiedADAP": 0.10000000149011612
+    },
+    "descRaw": "Gain @ModifiedADAP*100@% additional Attack Damage and Ability Power from all sources.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_Deathblade",
+    "name": "死亡之刃",
+    "rawName": "Deathblade",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_Deathblade.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      },
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      }
+    ],
+    "effects": {
+      "AD": 0.550000011920929,
+      "BonusDamage": 0.10000000149011612,
+      "{1543aa48}": 0.10000000149011612
+    },
+    "descRaw": "<tftitemrules>Perfect peace and calm for the holder - and all who face it.</tftitemrules><br><br>@TFTUnitProperty.:TFT_Augment_TragicalBlade_TRAKey@",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_GuardianAngel",
+    "name": "夜之锋刃",
+    "rawName": "Edge of Night",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_GuardianAngel.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      },
+      {
+        "apiName": "TFT_Item_ChainVest",
+        "name": "锁子甲"
+      }
+    ],
+    "effects": {
+      "HealthThreshold": 60,
+      "AP": 10,
+      "AD": 0.10000000149011612,
+      "AS": 15,
+      "StealthDuration": 1,
+      "DamageReduction": 100,
+      "Armor": 20,
+      "MissingHealthRestore": 0.30000001192092896
+    },
+    "descRaw": "At @HealthThreshold@% Health, briefly become untargetable, shed negative effects, and heal @MissingHealthRestore*100@% missing health.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_GuinsoosRageblade",
+    "name": "鬼索的狂暴之刃",
+    "rawName": "Guinsoo's Rageblade",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_GuinsoosRageblade.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      },
+      {
+        "apiName": "TFT_Item_NeedlesslyLargeRod",
+        "name": "无用大棒"
+      }
+    ],
+    "effects": {
+      "AttackSpeedPerStack": 7,
+      "AP": 10,
+      "AS": 10
+    },
+    "descRaw": "Gain @AttackSpeedPerStack@% stacking Attack Speed every second.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_HextechGunblade",
+    "name": "海克斯科技枪刃",
+    "rawName": "Hextech Gunblade",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_HextechGunblade.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      },
+      {
+        "apiName": "TFT_Item_NeedlesslyLargeRod",
+        "name": "无用大棒"
+      }
+    ],
+    "effects": {
+      "AD": 0.20000000298023224,
+      "AP": 20,
+      "StatOmnivamp": 0.15000000596046448,
+      "AllyHealing": 0.20000000298023224,
+      "Omnivamp": 18,
+      "ManaRegen": 1
+    },
+    "descRaw": "Heal the lowest percent Health ally for @AllyHealing*100@% of damage dealt.<br><br><TFTTrackerLabel>Ally Healing:</TFTTrackerLabel> <TFTHighlight>@TFTUnitProperty.item:TFT_Tracker_Value1@</TFTHighlight>",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_InfinityEdge",
+    "name": "无尽之刃",
+    "rawName": "Infinity Edge",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_InfinityEdge.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      },
+      {
+        "apiName": "TFT_Item_SparringGloves",
+        "name": "拳套"
+      }
+    ],
+    "effects": {
+      "AD": 0.3499999940395355,
+      "CritChance": 35
+    },
+    "descRaw": "Gain <TFTKeyword>Precision</TFTKeyword>.<br><br>{{TFT_Keyword_Precision}}",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_IonicSpark",
+    "name": "离子火花",
+    "rawName": "Ionic Spark",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_IonicSpark.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_NeedlesslyLargeRod",
+        "name": "无用大棒"
+      },
+      {
+        "apiName": "TFT_Item_NegatronCloak",
+        "name": "负极斗篷"
+      }
+    ],
+    "effects": {
+      "Damage": 250,
+      "Health": 250,
+      "AP": 15,
+      "HexRange": 2,
+      "ManaRatio": 150,
+      "MRShred": 30,
+      "MagicResist": 35
+    },
+    "descRaw": "@MRShred@% <TFTKeyword>Shred</TFTKeyword> enemies within @HexRange@ hexes. When enemies cast an Ability, deal magic damage equal to @ManaRatio@% of the Mana spent<br><br><tftitemrules><tftbold>Shred</tftbold>: Reduce Magic Resist</tftitemrules>",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_JeweledGauntlet",
+    "name": "珠光护手",
+    "rawName": "Jeweled Gauntlet",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_JeweledGauntlet.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_NeedlesslyLargeRod",
+        "name": "无用大棒"
+      },
+      {
+        "apiName": "TFT_Item_SparringGloves",
+        "name": "拳套"
+      }
+    ],
+    "effects": {
+      "AP": 35,
+      "CritChance": 35
+    },
+    "descRaw": "Gain <TFTKeyword>Precision</TFTKeyword>.<br><br>{{TFT_Keyword_Precision}}",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_LastWhisper",
+    "name": "最后的轻语",
+    "rawName": "Last Whisper",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_LastWhisper.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      },
+      {
+        "apiName": "TFT_Item_SparringGloves",
+        "name": "拳套"
+      }
+    ],
+    "effects": {
+      "ArmorReductionPercent": 30,
+      "ArmorBreakDuration": 3,
+      "AD": 0.15000000596046448,
+      "AS": 20,
+      "CritChance": 20
+    },
+    "descRaw": "Damage from attacks and Abilities @ArmorReductionPercent@% <TFTKeyword>Sunder</TFTKeyword> the target for @ArmorBreakDuration@ seconds. This effect does not stack.<br><br><tftitemrules><tftbold>Sunder</tftbold>: Reduce Armor</tftitemrules>",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_Leviathan",
+    "name": "纳什之牙",
+    "rawName": "Nashor's Tooth",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_Leviathan.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      },
+      {
+        "apiName": "TFT_Item_GiantsBelt",
+        "name": "巨人腰带"
+      }
+    ],
+    "effects": {
+      "Health": 150,
+      "AP": 15,
+      "AS": 10,
+      "ManaOnCrit": 4,
+      "CritChance": 20,
+      "BaseManaOnHit": 2
+    },
+    "descRaw": "Attacks grant @BaseManaOnHit@ bonus Mana, increased to @ManaOnCrit@ if they critically strike.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_MadredsBloodrazor",
+    "name": "巨人杀手",
+    "rawName": "Giant Slayer",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_MadredsBloodrazor.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      },
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      }
+    ],
+    "effects": {
+      "AD": 0.15000000596046448,
+      "AP": 15,
+      "AS": 15,
+      "{1543aa48}": 0.15000000596046448,
+      "DamageAmp": 0.15000000596046448,
+      "{abb9f4ce}": 25
+    },
+    "descRaw": "Gain @DamageAmp*100@% additional Damage Amp against Tanks.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_Morellonomicon",
+    "name": "莫雷洛秘典",
+    "rawName": "Morellonomicon",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_Morellonomicon.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_NeedlesslyLargeRod",
+        "name": "无用大棒"
+      },
+      {
+        "apiName": "TFT_Item_GiantsBelt",
+        "name": "巨人腰带"
+      }
+    ],
+    "effects": {
+      "BurnPercent": 1,
+      "TicksPerSecond": 1,
+      "MonsterCap": 100,
+      "BurnDuration": 10,
+      "Health": 150,
+      "AP": 20,
+      "GrievousWoundsPercent": 33,
+      "ManaRegen": 1
+    },
+    "descRaw": "Attacks and Abilities deal @BurnPercent@% <TFTKeyword>Burn</TFTKeyword> and @GrievousWoundsPercent@% <TFTKeyword>Wound</TFTKeyword> to enemies for @BurnDuration@ seconds.<br><br><tftitemrules><tftbold>Burn</tftbold>: Deals a percent of the target's max Health as true damage every second<br><tftbold>Wound</tftbold>: Reduces healing received</tftitemrules>",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_PowerGauntlet",
+    "name": "打击者连枷",
+    "rawName": "Striker's Flail",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_PowerGauntlet.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_GiantsBelt",
+        "name": "巨人腰带"
+      },
+      {
+        "apiName": "TFT_Item_SparringGloves",
+        "name": "拳套"
+      }
+    ],
+    "effects": {
+      "Health": 150,
+      "AS": 10,
+      "CritChance": 20,
+      "{1543aa48}": 0.10000000149011612,
+      "Duration": 5,
+      "BuffDamageAmp": 0.05000000074505806,
+      "MaxStacks": 4
+    },
+    "descRaw": "Critical Strikes grant @BuffDamageAmp*100@% Damage Amp for @Duration@ seconds, stacking up to @MaxStacks@ times.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_Quicksilver",
+    "name": "水银",
+    "rawName": "Quicksilver",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_Quicksilver.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_SparringGloves",
+        "name": "拳套"
+      },
+      {
+        "apiName": "TFT_Item_NegatronCloak",
+        "name": "负极斗篷"
+      }
+    ],
+    "effects": {
+      "MagicResist": 20,
+      "SpellShieldDuration": 18,
+      "AS": 15,
+      "CritChance": 20,
+      "ProcAttackSpeed": 0.029999999329447746
+    },
+    "descRaw": "Combat Start: Gain immunity to crowd control for @SpellShieldDuration@ seconds.<br><br>Gain @ProcAttackSpeed*100@% stacking Attack Speed every second.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_RabadonsDeathcap",
+    "name": "灭世者的死亡之帽",
+    "rawName": "Rabadon's Deathcap",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_RabadonsDeathcap.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_NeedlesslyLargeRod",
+        "name": "无用大棒"
+      },
+      {
+        "apiName": "TFT_Item_NeedlesslyLargeRod",
+        "name": "无用大棒"
+      }
+    ],
+    "effects": {
+      "AP": 55,
+      "BonusDamage": 0.15000000596046448,
+      "{1543aa48}": 0.15000000596046448
+    },
+    "descRaw": "<tftitemrules>This humble hat can help you make, or unmake, the world itself.</tftitemrules><br><br>@TFTUnitProperty.:TFT_Augment_DeadlierCaps_TRAKey@",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_RapidFireCannon",
+    "name": "红霸符",
+    "rawName": "Red Buff",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_RapidFireCannon.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      },
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      }
+    ],
+    "effects": {
+      "AS": 45,
+      "{9f5117db}": 100,
+      "HexRangeIncrease": 1,
+      "BonusDamage": 0.05999999865889549,
+      "BurnPercent": 1,
+      "HealingReductionPct": 33,
+      "Duration": 5,
+      "{1543aa48}": 0.029999999329447746
+    },
+    "descRaw": "Attacks and Abilities @BurnPercent@% <TFTKeyword>Burn</TFTKeyword> and @HealingReductionPct@% <TFTKeyword>Wound</TFTKeyword> enemies for @Duration@ seconds.<br><br><tftitemrules><tftbold>Burn</tftbold>: Deals a percent of the target's max Health as true damage every second<br><tftbold>Wound</tftbold>: Reduces healing received</tftitemrules>",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_RunaansHurricane",
+    "name": "海妖之怒",
+    "rawName": "Kraken's Fury",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_KrakenSlayer.TFT_TFT14_5.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_NegatronCloak",
+        "name": "负极斗篷"
+      },
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      }
+    ],
+    "effects": {
+      "AD": 0.10000000149011612,
+      "AS": 10,
+      "MagicResist": 20,
+      "ADOnAttack": 0.03500000014901161,
+      "ASCapstone": 0.15000000596046448,
+      "MaxStacks": 15
+    },
+    "descRaw": "Attacks grant @ADOnAttack*100@% stacking Attack Damage, up to @MaxStacks@ attacks. After @MaxStacks@ attacks, gain @ASCapstone*100@% Attack Speed.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_SpearOfShojin",
+    "name": "朔极之矛",
+    "rawName": "Spear of Shojin",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_SpearOfShojin.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      },
+      {
+        "apiName": "TFT_Item_TearOfTheGoddess",
+        "name": "女神之泪"
+      }
+    ],
+    "effects": {
+      "ManaRegen": 1,
+      "FlatManaRestore": 5,
+      "AD": 0.15000000596046448,
+      "AP": 15
+    },
+    "descRaw": "Attacks grant @FlatManaRestore@ bonus Mana.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_StatikkShiv",
+    "name": "虚空之杖",
+    "rawName": "Void Staff",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_VoidStaff.TFT_TFT14_5.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      },
+      {
+        "apiName": "TFT_Item_TearOfTheGoddess",
+        "name": "女神之泪"
+      }
+    ],
+    "effects": {
+      "ManaRegen": 1,
+      "MRShred": 30,
+      "MRShredDuration": 5,
+      "AP": 35,
+      "AS": 15
+    },
+    "descRaw": "Damage from attacks and Abilities @MRShred@% <TFTKeyword>Shred</TFTKeyword> the target for @MRShredDuration@ seconds. This effect does not stack.<br><br><tftitemrules><tftbold>Shred</tftbold>: Reduce Magic Resist</tftitemrules>",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_SteraksGage",
+    "name": "斯特拉克的挑战护手",
+    "rawName": "Sterak's Gage",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_SteraksGage.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_BFSword",
+        "name": "暴风大剑"
+      },
+      {
+        "apiName": "TFT_Item_GiantsBelt",
+        "name": "巨人腰带"
+      }
+    ],
+    "effects": {
+      "Health": 300,
+      "AD": 0.4000000059604645,
+      "HealthThreshold": 60,
+      "PercentHealthShield": 0.5,
+      "ShieldDuration": 4
+    },
+    "descRaw": "At @HealthThreshold@% Health, gain a Shield equal to @PercentHealthShield*100@% of the wearer's maximum Health that rapidly decays over @ShieldDuration@ seconds.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_TitansResolve",
+    "name": "泰坦的坚决",
+    "rawName": "Titan's Resolve",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_TitansResolve.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_ChainVest",
+        "name": "锁子甲"
+      },
+      {
+        "apiName": "TFT_Item_RecurveBow",
+        "name": "反曲之弓"
+      }
+    ],
+    "effects": {
+      "Armor": 20,
+      "StackCap": 25,
+      "StackingAD": 0.019999999552965164,
+      "StackingSP": 2,
+      "AS": 10,
+      "StackedAmp": 0.10000000149011612
+    },
+    "descRaw": "Gain @StackingAD*100@% Attack Damage and @StackingSP@% Ability Power when attacking or taking damage, stacking up to @StackCap@ times.  <br><br>At full stacks, gain @StackedAmp*100@% Damage Amp and gain immunity to crowd control.",
+    "tags": []
+  },
+  {
+    "apiName": "TFT_Item_UnstableConcoction",
+    "name": "正义之手",
+    "rawName": "Hand Of Justice",
+    "icon": "ASSETS/Maps/TFT/Icons/Items/Hexcore/TFT_Item_UnstableConcoction.TFT_Set13.tex",
+    "composition": [
+      {
+        "apiName": "TFT_Item_TearOfTheGoddess",
+        "name": "女神之泪"
+      },
+      {
+        "apiName": "TFT_Item_SparringGloves",
+        "name": "拳套"
+      }
+    ],
+    "effects": {
+      "AD_NotStatBar": 0.15000000596046448,
+      "AP_NotStatBar": 15,
+      "StatOmnivamp_NotStatBar": 0.11999999731779099,
+      "CritChance": 20,
+      "ManaRegen": 1,
+      "{f23e83fc}": 2,
+      "HealthThreshold": 0.5
+    },
+    "descRaw": "Gain 2 effects:<li>@AD_NotStatBar*100@% Attack Damage and @AP_NotStatBar@% Ability Power.<li>@StatOmnivamp_NotStatBar*100@% Omnivamp.<br><br>While above @HealthThreshold*100@% health, double the Attack Damage and Ability Power. While below @HealthThreshold*100@% Health, double the Omnivamp.",
+    "tags": []
+  }
+]

@@ -1,0 +1,9 @@
+.edge-profile/
+.edge-profile2/
+
+*.dmp
+*.tmp
+*.temp
+
+Thumbs.db
+.DS_Store

@@ -1,0 +1,48 @@
+{
+  selectionId: "metatft-pbe-units-top3-playable",
+  createdAt: "2026-04-02",
+  source: {
+    pageUrl: "https://www.metatft.com/units",
+    statsApi:
+      "https://api-hc.metatft.com/tft-stat-api/units?queue=PBE&patch=current&days=3&permit_filter_adjustment=true",
+    sourcePatch: "17.1",
+    sourceSet: "TFTSet17",
+    queue: "pbe",
+  },
+  rules: {
+    rankingMetric: "average placement",
+    excludeUnits: ["tft17_bardfollower", "TFT17_PVE_ElderDragon"],
+    playableOnly: true,
+    dpsCalculatorFilter: "All non-tank units with cost >= 4",
+    excludeTankRoles: ["ADTank", "APTank"],
+  },
+  selectedUnits: [
+    {
+      apiName: "TFT17_Shen",
+      name: "Shen",
+      avgPlace: 3.3855,
+      games: 338677,
+      rank: 1,
+    },
+    {
+      apiName: "TFT17_Jhin",
+      name: "Jhin",
+      avgPlace: 3.4793,
+      games: 293193,
+      rank: 2,
+    },
+    {
+      apiName: "TFT17_Morgana",
+      name: "Morgana",
+      avgPlace: 3.5863,
+      games: 249292,
+      rank: 3,
+    },
+  ],
+  notes: [
+    "This file records why these three sample champions were chosen.",
+    "Summons and non-buyable units were excluded from the top-three ranking.",
+    "The ranking is only used to pick sample units and is not part of the useful runtime data model.",
+    "For the DPS calculator, all 4-cost and above non-tank units should be recorded.",
+  ],
+}

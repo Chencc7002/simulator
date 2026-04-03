@@ -1,0 +1,143 @@
+{
+  id: "tft17-vex",
+  apiName: "TFT17_Vex",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Vex?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Vex]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Vex",
+    cost: 5,
+    role: {
+      key: "{9eb7b8a6}",
+      apiName: "APCarry",
+      displayName: "Magic Marksman",
+    },
+    traits: ["Doomer"],
+    avatarUrl: "ASSETS/Characters/TFT17_Vex/Skins/Base/Images/TFT17_vex_splash_tile_10.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 900,
+    ad: 15,
+    as: 0.8,
+    armor: 40,
+    mr: 40,
+    range: 10,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 60,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 900,
+      ad: 15,
+      as: 0.8,
+      armor: 40,
+      mr: 40,
+      range: 10,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 60,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Lend Me a Hand, Shadow!",
+    type: null,
+    description:
+      "<spellPassive>Passive:</spellPassive> Every time Vex attacks, Shadow strikes a nearby enemy, dealing <magicDamage>@ModifiedShadowHandDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage. Whenever an enemy is struck @NumStrikesForPassive@ times by Shadow, Shadow strikes them again.<br><br><spellActive>Active:</spellActive> Shadow launches @NumActiveStrikes@ empowered strikes, dealing <magicDamage>@ModifiedShadowHandMagicDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage instead.",
+    baseValues: {
+      ShadowHandDamage: [30, 45, 250],
+      ShadowHandMagicDamage: [140, 210, 1000],
+      NumActiveStrikes: [3, 3, 3],
+      NumStrikesForPassive: [5, 5, 5],
+    },
+    scalings: {
+      ModifiedShadowHandDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "ShadowHandDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedShadowHandMagicDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "ShadowHandMagicDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "ShadowHandDamage",
+        nameOverride: "Spell_TFT17_VexSpell_Backline_ShadowHandDamage",
+        name: "Strike Damage: <magicDamage>@ModifiedShadowHandDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+      {
+        type: "ShadowHandMagicDamage",
+        nameOverride: "Spell_TFT17_VexSpell_ShadowHandTrueDamage",
+        name: "Empowered Strike Damage: <magicDamage>@ModifiedShadowHandMagicDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+    ],
+    extraAbilitiesRaw: {
+      TFT17_VexSpell_Frontline: "Present in source lookup but omitted from normalized fields for now.",
+    },
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.9,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+      "normalization of extraAbilitiesRaw",
+    ],
+    notes: [
+      "Core stats and main ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: marksman/carry rather than tank.",
+      "The source also includes extra ability data for another form; that raw data still needs later normalization.",
+    ],
+  },
+}

@@ -1,0 +1,167 @@
+{
+  id: "tft17-kindred",
+  apiName: "TFT17_Kindred",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Kindred?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Kindred]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Kindred",
+    cost: 4,
+    role: {
+      key: "{34ed6daa}",
+      apiName: "ADCarry",
+      displayName: "Attack Marksman",
+    },
+    traits: ["N.O.V.A.", "Challenger"],
+    avatarUrl: "ASSETS/Characters/TFT17_Kindred/Skins/Base/Images/TFT17_Kindred_splash_tile_23.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 850,
+    ad: 55,
+    as: 0.8,
+    armor: 30,
+    mr: 30,
+    range: 6,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 40,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 850,
+      ad: 55,
+      as: 0.8,
+      armor: 30,
+      mr: 30,
+      range: 6,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 40,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Cosmic Pursuit",
+    type: null,
+    description:
+      "<spellPassive>Passive:</spellPassive> Attacks and Abilities mark the target. When an enemy reaches @MaxMarks@ marks, Wolf consumes the marks, dealing <physicalDamage>@TotalDamage@ (%i:scaleAD%%i:scaleAP%)</physicalDamage> physical damage. <br><br><spellActive>Active:</spellActive> Jump up to @HexDistance@ hex away and fire arrows at the nearest <scaleLevel>@NumTargets@</scaleLevel> targets, each dealing <physicalDamage>@ModifiedDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage. <br><br><ShowIf.TFT17_DRX_CapstoneActive><scaleLevel enabled=TFT17_DRX_isSelected alternate=TFTGuildInactive>N.O.V.A. Strike: Gain @NovaDamageAmp*100@% Damage Amp. Now and every @NovaRepeatTimer@ seconds after, add a mark to all enemies.</scaleLevel></ShowIf.TFT17_DRX_CapstoneActive>",
+    baseValues: {
+      MaxMarks: [3, 3, 3],
+      NumTargets: [3, 3, 5],
+      SpellDamage: [60, 90, 600],
+      ADDamage: [115, 175, 900],
+      APDamage: [10, 15, 100],
+      HexDistance: [1, 1, 1],
+      NovaRepeatTimer: [5, 5, 5],
+      NovaDamageAmp: [0.1, 0.1, 0.1],
+    },
+    scalings: {
+      TotalDamage: [
+        {
+          type: "SumOfSubPartsCalculationPart",
+          parts: [
+            {
+              mRatio: 1,
+              mStat: 3,
+              type: "SubPartScaledProportionalToStat",
+              part: {
+                name: "ADDamage",
+                type: "NamedDataValueCalculationPart",
+              },
+            },
+            {
+              mRatio: 0.01,
+              type: "SubPartScaledProportionalToStat",
+              part: {
+                name: "APDamage",
+                type: "NamedDataValueCalculationPart",
+              },
+            },
+          ],
+        },
+      ],
+      ModifiedDamage: [
+        {
+          mRatio: 0.01,
+          mStat: 3,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "SpellDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "APDamage",
+        nameOverride: "Spell_TFT17_KindredSpell_WolfAPDamage",
+        name: "Wolf Damage: %i:scaleAP%",
+      },
+      {
+        type: "ADDamage",
+        nameOverride: "Spell_TFT17_KindredSpell_WolfDamage",
+        name: "Wolf Damage: <physicalDamage>@TotalDamage@</physicalDamage> = <scaleLevel>@ADDamage@ (%i:scaleAD%)</scaleLevel> + <scaleLevel>@APDamage@ (%i:scaleAP%)</scaleLevel> ",
+      },
+      {
+        type: "NumTargets",
+        nameOverride: "Spell_TFT17_KindredSpell_Enemies",
+        name: "Targets:",
+      },
+      {
+        type: "SpellDamage",
+        nameOverride: "Spell_TFT17_KindredSpell_ArrowDamage",
+        name: "Arrow Damage: <physicalDamage>@ModifiedDamage@ (%i:scaleAD%)</physicalDamage>",
+      },
+    ],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.91,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: marksman rather than tank.",
+    ],
+  },
+}

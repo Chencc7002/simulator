@@ -1,0 +1,10 @@
+{
+  updatedAt: "2026-04-02",
+  defaults: {
+    canCastAfterAutoProgress: 0.3,
+    requiresAttackBetweenCasts: false,
+    projectileDelay: 0,
+    tickInterval: null,
+  },
+  note: "These values intentionally favor stable comparison over perfect replay fidelity.",
+}

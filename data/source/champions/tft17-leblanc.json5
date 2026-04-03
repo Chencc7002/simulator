@@ -1,0 +1,146 @@
+{
+  id: "tft17-leblanc",
+  apiName: "TFT17_Leblanc",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Leblanc?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Leblanc]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "LeBlanc",
+    cost: 4,
+    role: {
+      key: "{9eb7b8a6}",
+      apiName: "APCarry",
+      displayName: "Magic Marksman",
+    },
+    traits: ["Arbiter", "Shepherd"],
+    avatarUrl: "ASSETS/Characters/TFT17_Leblanc/Skins/Base/Images/TFT17_Leblanc_splash_tile_29.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 850,
+    ad: 0,
+    as: 0.8,
+    armor: 30,
+    mr: 30,
+    range: 4,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 40,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 850,
+      ad: 0,
+      as: 0.8,
+      armor: 30,
+      mr: 30,
+      range: 4,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 40,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Fracture Reality",
+    type: null,
+    description:
+      "<spellPassive>Passive:</spellPassive> Attacks deal <magicDamage>@ModifiedBaseAttackDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage instead.<br><br><spellActive>Active:</spellActive> Summon @NumClones@ clones that attack alongside for @NumAttacks@ attacks, dealing <scaleLevel>@CloneDamageMultiplier*100@%</scaleLevel> damage. For their final attack, clones fire a bolt that deals <magicDamage>@ModifiedBoltDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage.",
+    baseValues: {
+      BasicAttackDamage: [60, 90, 400],
+      CloneDamageMultiplier: [0.25, 0.25, 1.5],
+      BoltDamage: [80, 120, 750],
+      NumClones: [5, 5, 5],
+      NumAttacks: [5, 5, 5],
+    },
+    scalings: {
+      ModifiedBoltDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "BoltDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedBaseAttackDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "BasicAttackDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "BasicAttackDamage",
+        nameOverride: "Spell_TFT17_LeblancSpell_BasicAttackDamage",
+        name: "Attack Damage: <magicDamage>@ModifiedBaseAttackDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+      {
+        type: "CloneDamageMultiplier",
+        multiplier: 100,
+        nameOverride: "Spell_TFT17_LeblancSpell_CloneMultiplier",
+        Style: 1,
+        name: "Clone Damage Multiplier:",
+      },
+      {
+        type: "BoltDamage",
+        nameOverride: "Spell_TFT17_LeblancSpell_BoltDamage",
+        name: "Bolt Damage: <magicDamage>@ModifiedBoltDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+    ],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.92,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: magic marksman rather than tank.",
+    ],
+  },
+}

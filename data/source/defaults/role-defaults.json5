@@ -1,0 +1,36 @@
+{
+  updatedAt: "2026-04-02",
+  note: "Manual defaults for the simulation layer. These are not source-of-truth game files.",
+  roles: {
+    tank: {
+      manaPerAttack: 5,
+      manaRegenPerSecond: 0,
+      castTime: 1.0,
+      manaLock: 0.5,
+    },
+    fighter: {
+      manaPerAttack: 10,
+      manaRegenPerSecond: 0,
+      castTime: 1.0,
+      manaLock: 0.5,
+    },
+    caster: {
+      manaPerAttack: 7,
+      manaRegenPerSecond: 2,
+      castTime: 1.0,
+      manaLock: 0.5,
+    },
+    marksman: {
+      manaPerAttack: 10,
+      manaRegenPerSecond: 0,
+      castTime: 1.0,
+      manaLock: 0.5,
+    },
+    assassin: {
+      manaPerAttack: 10,
+      manaRegenPerSecond: 0,
+      castTime: 1.0,
+      manaLock: 0.5,
+    },
+  },
+}

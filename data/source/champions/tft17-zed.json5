@@ -1,0 +1,106 @@
+{
+  id: "tft17-zed",
+  apiName: "TFT17_Zed",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Zed?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Zed]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Zed",
+    cost: 5,
+    role: {
+      key: "{53d104ac}",
+      apiName: "ADFighter",
+      displayName: "Attack Fighter",
+    },
+    traits: ["Galaxy Hunter"],
+    avatarUrl: "ASSETS/Characters/TFT17_Zed/Skins/Base/Images/TFT17_Zed_splash_tile_68.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 1200,
+    ad: 85,
+    as: 0.85,
+    armor: 60,
+    mr: 60,
+    range: 1,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 30,
+    manaMax: 80,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 1200,
+      ad: 85,
+      as: 0.85,
+      armor: 60,
+      mr: 60,
+      range: 1,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 30,
+      manaMax: 80,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Quantum Clone",
+    type: null,
+    description:
+      "Create a clone behind the target with @HPPenalty*100@% reduced max Health and @ManaCostIncrease@ increased Mana cost. The clone inherits its creator's items, stats, and current Health, and can cast Quantum Clone.",
+    baseValues: {
+      HPPenalty: [0.33, 0.33, 0.33],
+      ManaCostIncrease: [30, 30, 30],
+    },
+    scalings: {},
+    tooltipElementsRaw: [],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.88,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+      "clone combat sub-rules",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: fighter rather than tank.",
+      "Zed's real damage model likely depends on clone behavior that will need a later simulation-specific override.",
+    ],
+  },
+}

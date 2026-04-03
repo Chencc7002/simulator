@@ -1,0 +1,1979 @@
+[
+  {
+    "id": "tft17-aurelion-sol",
+    "apiName": "TFT17_AurelionSol",
+    "name": "奥瑞利安·索尔",
+    "shortName": "索尔",
+    "cost": 4,
+    "role": {
+      "apiName": "APCaster",
+      "name": "魔法施法者"
+    },
+    "traits": [
+      {
+        "apiName": "Mecha",
+        "name": "机甲"
+      },
+      {
+        "apiName": "Channeler",
+        "name": "引导者"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_AurelionSol/Skins/Base/Images/TFT17_AurelionSol_splash_tile_2.TFT_Set17.tex",
+    "stats": {
+      "hp": 850,
+      "ad": 30,
+      "as": 0.75,
+      "armor": 30,
+      "mr": 30,
+      "range": 6,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 15,
+      "manaMax": 75,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "死亡光束",
+      "rawName": "Deathbeam",
+      "descriptionZh": null,
+      "descriptionRaw": "Channel a deathbeam in a line towards the current target for @Duration@ seconds. It deals <magicDamage>@ModifiedDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage per second, reduced by @DamageReductionPerTarget*100@% per enemy it passes through. Deathbeam ignores @MagicPen*100@% of the enemy's Magic Resist.",
+      "baseValues": {
+        "Duration": [
+          3,
+          3,
+          3
+        ],
+        "DamagePerSecond": [
+          200,
+          300,
+          2700
+        ],
+        "MagicPen": [
+          0.3,
+          0.3,
+          0.3
+        ],
+        "DamageReductionPerTarget": [
+          0.6,
+          0.6,
+          0.6
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-bard",
+    "apiName": "TFT17_Bard",
+    "name": "巴德",
+    "shortName": "巴德",
+    "cost": 5,
+    "role": {
+      "apiName": "APCaster",
+      "name": "魔法施法者"
+    },
+    "traits": [
+      {
+        "apiName": "Meeple",
+        "name": "米宝"
+      },
+      {
+        "apiName": "Channeler",
+        "name": "引导者"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Bard/Skins/Base/Images/TFT17_Bard_splash_tile_8.TFT_Set17.tex",
+    "stats": {
+      "hp": 900,
+      "ad": 30,
+      "as": 0.85,
+      "armor": 40,
+      "mr": 40,
+      "range": 4,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 65,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "超级友好物体",
+      "rawName": "Ultra Friendly Object",
+      "descriptionZh": null,
+      "descriptionRaw": "Summon a flying saucer over the current target that lasts @Duration@ seconds. Each second it deals <magicDamage>@ModifiedDamagePerSecond@&nbsp;(%i:scaleAP%)</magicDamage>&nbsp;magic damage to the target, plus <magicDamage>@ModifiedSplitDamagePerSecond@&nbsp;(%i:scaleAP%)</magicDamage>&nbsp;magic damage split between all enemies within @SecondaryHexRange@&nbsp;hex. The saucer deals <TFTBonus>@TankDamageIncrease*100@%</TFTBonus> increased damage to Tanks.<br><br>If an enemy under the UFO dies, Bard has a <TFTBonus>@AbductChance*100@%&nbsp; </TFTBonus>chance to abduct them and create a 1-star copy on your bench.<br><br><mainText enabled=TFT17_Astronaut_IsActive alternate=rules><spellActive enabled=TFT17_Astronaut_IsActive alternate=rules>Meep bonus:</spellActive> On combat start, grant the nearest <TFTBonus>@ModifiedNumAllies@</TFTBonus>&nbsp;(%i:set14AmpIcon%) Meeple allies an additional Meep.</mainText><br><br><rules>Friends abducted: @TFTUnitProperty.:TFT17_Bard_FriendsAbducted@</rules>",
+      "baseValues": {
+        "DamagePerSecond": [
+          270,
+          405,
+          3000
+        ],
+        "SplitDamagePerSecond": [
+          135,
+          205,
+          1500
+        ],
+        "Duration": [
+          4,
+          4,
+          4
+        ],
+        "AbductChance": [
+          0.2,
+          0.3,
+          1
+        ],
+        "PVEAbductionChanceModifier": [
+          1,
+          1,
+          1
+        ],
+        "MeepsPerMeep": [
+          1,
+          1,
+          1
+        ],
+        "TankDamageIncrease": [
+          0.5,
+          0.5,
+          0.5
+        ],
+        "SecondaryHexRange": [
+          1,
+          1,
+          1
+        ],
+        "CanAbductSecondaryTargets": [
+          1,
+          1,
+          1
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-blitzcrank",
+    "apiName": "TFT17_Blitzcrank",
+    "name": "布里茨",
+    "shortName": "机器人",
+    "cost": 5,
+    "role": {
+      "apiName": "APFighter",
+      "name": "魔法战士"
+    },
+    "traits": [
+      {
+        "apiName": "Party Animal",
+        "name": "派对动物"
+      },
+      {
+        "apiName": "Space Groove",
+        "name": "太空律动"
+      },
+      {
+        "apiName": "Vanguard",
+        "name": "先锋"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Blitzcrank/Skins/Base/Images/TFT17_Blitzcrank_splash_tile_65.TFT_Set17.tex",
+    "stats": {
+      "hp": 1100,
+      "ad": 50,
+      "as": 0.9,
+      "armor": 60,
+      "mr": 60,
+      "range": 1,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 20,
+      "manaMax": 100,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "派对砸场",
+      "rawName": "Party Crasher",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Every <scaleLevel>@BoltCooldown@</scaleLevel> seconds, call down a bolt on the highest Health nearby enemy that deals <magicDamage>@ModifiedBoltDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage.<br><br><spellActive>Active:</spellActive> Summon a disco ball at the largest clump of enemies, then knock up the current target into it, dealing <magicDamage>@ModifiedUppercutDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage. They crash down into the disco ball, dealing <magicDamage>@ModifiedExplosionDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage in a three hex radius. Enter {{TFT17_SpaceGroove_TheGroove}} for @GrooveDurationPerTarget@ second per enemy hit.",
+      "baseValues": {
+        "BoltCooldown": [
+          2,
+          2,
+          1
+        ],
+        "BoltDamage": [
+          70,
+          100,
+          300
+        ],
+        "UppercutDamage": [
+          150,
+          225,
+          999
+        ],
+        "ExplosionDamage": [
+          175,
+          265,
+          5000
+        ],
+        "GrooveDurationPerTarget": [
+          1,
+          1,
+          1
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-corki",
+    "apiName": "TFT17_Corki",
+    "name": "库奇",
+    "shortName": "库奇",
+    "cost": 4,
+    "role": {
+      "apiName": "ADCaster",
+      "name": "攻击施法者"
+    },
+    "traits": [
+      {
+        "apiName": "Meeple",
+        "name": "米宝"
+      },
+      {
+        "apiName": "Fateweaver",
+        "name": "织命者"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Corki/Skins/Base/Images/TFT17_Corki_splash_tile_26.TFT_Set17.tex",
+    "stats": {
+      "hp": 850,
+      "ad": 45,
+      "as": 0.8,
+      "armor": 30,
+      "mr": 30,
+      "range": 4,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 60,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "陨星爆破",
+      "rawName": "Asteroid Blaster",
+      "descriptionZh": null,
+      "descriptionRaw": "Strafe to a nearby position, unleashing @BaseMissiles@ missiles split between the target and all enemies within two hexes. Missiles deal <physicalDamage>@ModifiedDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage with a @ProcChance@%<ShowIf.TFT17_Fateweaver_LuckyAbility> <TFTKeyword>Lucky</TFTKeyword></ShowIf.TFT17_Fateweaver_LuckyAbility> chance of firing a mega missile that deals <physicalDamage>@ModifiedProcDamage@&nbsp;(%i:scaleAD%)</physicalDamage> instead.<br><br><mainText enabled=TFT17_Astronaut_IsActive alternate=rules><spellActive enabled=TFT17_Astronaut_IsActive alternate=rules>Meep Bonus:</spellActive><TFTBonus><ShowIfNot.TFT17_Astronaut_IsActive></ShowIfNot.TFT17_Astronaut_IsActive><ShowIf.TFT17_Astronaut_IsActive></ShowIf.TFT17_Astronaut_IsActive></TFTBonus> Every <TFTBonus>@ModifiedMeepCooldown@ (%i:set14AmpIcon%)</TFTBonus> seconds, launch an Explosive Meep at the target, dealing <physicalDamage>@ModifiedMeepDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage in a one hex radius on impact.</mainText><br><br><ShowIf.TFT17_Fateweaver_LuckyAbility><rules>Lucky: Check twice and take the better outcome.</rules></ShowIf.TFT17_Fateweaver_LuckyAbility>",
+      "baseValues": {
+        "BaseMissiles": [
+          21,
+          21,
+          21
+        ],
+        "MissileAD": [
+          26,
+          40,
+          280
+        ],
+        "MissileAP": [
+          4,
+          6,
+          24
+        ],
+        "ProcChance": [
+          20,
+          20,
+          20
+        ],
+        "ProcDamageMult": [
+          3,
+          3,
+          3
+        ],
+        "MissilesPerLaunchAttack": [
+          5,
+          5,
+          5
+        ],
+        "BaseMeepCooldown": [
+          8,
+          8,
+          8
+        ],
+        "CooldownReductionPerAstro": [
+          1,
+          1,
+          1
+        ],
+        "MeepDamage": [
+          100,
+          150,
+          900
+        ],
+        "CDRPerMeep": [
+          0.1,
+          0.1,
+          0.1
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-fiora",
+    "apiName": "TFT17_Fiora",
+    "name": "菲奥娜",
+    "shortName": "剑姬",
+    "cost": 5,
+    "role": {
+      "apiName": "ADFighter",
+      "name": "攻击战士"
+    },
+    "traits": [
+      {
+        "apiName": "Divine Duelist",
+        "name": "神圣决斗家"
+      },
+      {
+        "apiName": "Anima",
+        "name": "幻灵战队"
+      },
+      {
+        "apiName": "Marauder",
+        "name": "掠夺者"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Fiora/Skins/Base/Images/TFT17_Fiora_splash_tile_51.TFT_Set17.tex",
+    "stats": {
+      "hp": 1200,
+      "ad": 80,
+      "as": 0.9,
+      "armor": 65,
+      "mr": 65,
+      "range": 1,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 10,
+      "manaMax": 80,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "完美剑技",
+      "rawName": "Perfect Bladework",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Every @NumAttacks@ attacks, reveal a Vital on the target. If a Vital exists, dash to attack it dealing <trueDamage>@ModifiedVitalDamage@&nbsp;(%i:scaleAD%)</trueDamage> bonus true damage and heal for @PercentHealing*100@% of the damage dealt.<br><br><spellActive>Active:</spellActive> Reveal @NumVitals@ Vitals on the target and quickly attack them all. If the target dies, remaining Vitals transfer to the nearest enemy. Upon striking the final Vital, create a two hex aura that heals allies within for <scaleHealth>@ModifiedHealing@&nbsp;(%i:scaleAP%)</scaleHealth> over @AuraDuration@ seconds.",
+      "baseValues": {
+        "NumAttacks": [
+          2,
+          2,
+          2
+        ],
+        "VitalDamage": [
+          45,
+          70,
+          777
+        ],
+        "PercentHealing": [
+          0.15,
+          0.15,
+          0.15
+        ],
+        "NumVitals": [
+          6,
+          6,
+          6
+        ],
+        "AuraHealing": [
+          200,
+          250,
+          999
+        ],
+        "AuraDuration": [
+          5,
+          5,
+          5
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-graves",
+    "apiName": "TFT17_Graves",
+    "name": "格雷福斯",
+    "shortName": "男枪",
+    "cost": 5,
+    "role": {
+      "apiName": "ADCarry",
+      "name": "攻击射手"
+    },
+    "traits": [
+      {
+        "apiName": "Factory New",
+        "name": "全新出厂"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Graves/Skins/Base/Images/TFT17_Graves_splash_tile_18.TFT_Set17.tex",
+    "stats": {
+      "hp": 900,
+      "ad": 57,
+      "as": 0.7,
+      "armor": 40,
+      "mr": 40,
+      "range": 4,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 60,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "附带伤害",
+      "rawName": "Collateral Damage",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Attacks fire @NumProjectiles@ projectiles in a cone that deal <physicalDamage>@ModifiedPassiveDamage@ (%i:TFTBaseAD%)</physicalDamage> physical damage each.<br><br><spellActive>Active:</spellActive> Fire an explosive shell that deals <physicalDamage>@ModifiedDamage@ (%i:scaleAD%)</physicalDamage> physical damage to the target, and <physicalDamage>@ModifiedSecondaryDamage@&nbsp;(%i:scaleAD%%i:scaleAP%)</physicalDamage> physical damage to adjacent enemies.",
+      "baseValues": {
+        "NumProjectiles": [
+          5,
+          5,
+          5
+        ],
+        "PassivePercentBAD": [
+          0.33,
+          0.33,
+          0.33
+        ],
+        "Damage": [
+          360,
+          540,
+          5555
+        ],
+        "SecondaryDamageAD": [
+          120,
+          180,
+          3333
+        ],
+        "SecondaryDamageAP": [
+          30,
+          45,
+          777
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-jhin",
+    "apiName": "TFT17_Jhin",
+    "name": "烬",
+    "shortName": "烬",
+    "cost": 5,
+    "role": {
+      "apiName": "ADCarry",
+      "name": "攻击射手"
+    },
+    "traits": [
+      {
+        "apiName": "Dark Star",
+        "name": "暗星"
+      },
+      {
+        "apiName": "Eradicator",
+        "name": "歼灭者"
+      },
+      {
+        "apiName": "Sniper",
+        "name": "狙神"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Jhin/Skins/Base/Images/TFT17_Jhin_splash_tile_37.TFT_Set17.tex",
+    "stats": {
+      "hp": 900,
+      "ad": 84,
+      "as": 0.9,
+      "armor": 40,
+      "mr": 40,
+      "range": 6,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 44,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "太空歌剧",
+      "rawName": "Space Opera",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Jhin has a fixed attack speed of <scaleLevel>@FixedAS@</scaleLevel> and converts every @PercentBonusASToConvert*100@% of bonus Attack Speed into @ADConversionRate@ bonus Attack Damage.<br><br><spellActive>Active:</spellActive> Summon @NumHands@ spectral hands that fire alongside Jhin for the next @NumAttacks@ attacks. Each hand deals <physicalDamage>@TotalDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage per shot. The final shots deal <TFTBonus>@FinalShotPercentDamageIncrease*100@%</TFTBonus> more damage and pierce through the most enemies in a line, dealing @PercentDamageReductionPerTargetHit*100@% reduced damage per target hit. ",
+      "baseValues": {
+        "FixedAS": [
+          0.9,
+          0.9,
+          1.4
+        ],
+        "PercentBonusASToConvert": [
+          0.01,
+          0.01,
+          0.01
+        ],
+        "ADConversionRate": [
+          0.75,
+          0.75,
+          0.75
+        ],
+        "NumHands": [
+          4,
+          4,
+          4
+        ],
+        "NumAttacks": [
+          4,
+          4,
+          4
+        ],
+        "APDamage": [
+          4,
+          6,
+          44
+        ],
+        "ADDamage": [
+          44,
+          66,
+          644
+        ],
+        "FinalShotPercentDamageIncrease": [
+          2.44,
+          2.44,
+          2.44
+        ],
+        "PercentDamageReductionPerTargetHit": [
+          0.44,
+          0.44,
+          0.44
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-karma",
+    "apiName": "TFT17_Karma",
+    "name": "卡尔玛",
+    "shortName": "卡玛",
+    "cost": 4,
+    "role": {
+      "apiName": "APCaster",
+      "name": "魔法施法者"
+    },
+    "traits": [
+      {
+        "apiName": "Dark Star",
+        "name": "暗星"
+      },
+      {
+        "apiName": "Voyager",
+        "name": "航海者"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Karma/Skins/Base/Images/TFT17_Karma_splash_tile_8.TFT_Set17.tex",
+    "stats": {
+      "hp": 850,
+      "ad": 40,
+      "as": 0.75,
+      "armor": 30,
+      "mr": 30,
+      "range": 4,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 10,
+      "manaMax": 50,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "奇点",
+      "rawName": "Singularity",
+      "descriptionZh": null,
+      "descriptionRaw": "Gather the force of a black hole, dealing <magicDamage>@ModifiedDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage split between the target and the <scaleLevel>@NumEnemies@</scaleLevel> closest enemies to them. The target takes an additional <magicDamage>@ModifiedSecondaryDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage.",
+      "baseValues": {
+        "Damage": [
+          570,
+          855,
+          5000
+        ],
+        "SecondaryDamage": [
+          120,
+          180,
+          1000
+        ],
+        "BaseHexRange": [
+          1,
+          1,
+          1
+        ],
+        "NumCastsToExpand": [
+          2,
+          2,
+          2
+        ],
+        "HexPerExpansion": [
+          1,
+          1,
+          1
+        ],
+        "MaximumHexes": [
+          8,
+          8,
+          8
+        ],
+        "NumEnemies": [
+          2,
+          2,
+          4
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-kindred",
+    "apiName": "TFT17_Kindred",
+    "name": "千珏",
+    "shortName": "千珏",
+    "cost": 4,
+    "role": {
+      "apiName": "ADCarry",
+      "name": "攻击射手"
+    },
+    "traits": [
+      {
+        "apiName": "N.O.V.A.",
+        "name": "新星"
+      },
+      {
+        "apiName": "Challenger",
+        "name": "挑战者"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Kindred/Skins/Base/Images/TFT17_Kindred_splash_tile_23.TFT_Set17.tex",
+    "stats": {
+      "hp": 850,
+      "ad": 55,
+      "as": 0.8,
+      "armor": 30,
+      "mr": 30,
+      "range": 6,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 40,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "宇宙追猎",
+      "rawName": "Cosmic Pursuit",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Attacks and Abilities mark the target. When an enemy reaches @MaxMarks@ marks, Wolf consumes the marks, dealing <physicalDamage>@TotalDamage@ (%i:scaleAD%%i:scaleAP%)</physicalDamage> physical damage. <br><br><spellActive>Active:</spellActive> Jump up to @HexDistance@ hex away and fire arrows at the nearest <scaleLevel>@NumTargets@</scaleLevel> targets, each dealing <physicalDamage>@ModifiedDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage. <br><br><ShowIf.TFT17_DRX_CapstoneActive><scaleLevel enabled=TFT17_DRX_isSelected alternate=TFTGuildInactive>N.O.V.A. Strike: Gain @NovaDamageAmp*100@% Damage Amp. Now and every @NovaRepeatTimer@ seconds after, add a mark to all enemies.</scaleLevel></ShowIf.TFT17_DRX_CapstoneActive>",
+      "baseValues": {
+        "MaxMarks": [
+          3,
+          3,
+          3
+        ],
+        "NumTargets": [
+          3,
+          3,
+          5
+        ],
+        "SpellDamage": [
+          60,
+          90,
+          600
+        ],
+        "ADDamage": [
+          115,
+          175,
+          900
+        ],
+        "APDamage": [
+          10,
+          15,
+          100
+        ],
+        "HexDistance": [
+          1,
+          1,
+          1
+        ],
+        "NovaRepeatTimer": [
+          5,
+          5,
+          5
+        ],
+        "NovaDamageAmp": [
+          0.1,
+          0.1,
+          0.1
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-leblanc",
+    "apiName": "TFT17_Leblanc",
+    "name": "乐芙兰",
+    "shortName": "妖姬",
+    "cost": 4,
+    "role": {
+      "apiName": "APCarry",
+      "name": "魔法射手"
+    },
+    "traits": [
+      {
+        "apiName": "Arbiter",
+        "name": "仲裁者"
+      },
+      {
+        "apiName": "Shepherd",
+        "name": "牧魂人"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Leblanc/Skins/Base/Images/TFT17_Leblanc_splash_tile_29.TFT_Set17.tex",
+    "stats": {
+      "hp": 850,
+      "ad": 0,
+      "as": 0.8,
+      "armor": 30,
+      "mr": 30,
+      "range": 4,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 40,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "实界撕裂",
+      "rawName": "Fracture Reality",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Attacks deal <magicDamage>@ModifiedBaseAttackDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage instead.<br><br><spellActive>Active:</spellActive> Summon @NumClones@ clones that attack alongside for @NumAttacks@ attacks, dealing <scaleLevel>@CloneDamageMultiplier*100@%</scaleLevel> damage. For their final attack, clones fire a bolt that deals <magicDamage>@ModifiedBoltDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage.",
+      "baseValues": {
+        "BasicAttackDamage": [
+          60,
+          90,
+          400
+        ],
+        "CloneDamageMultiplier": [
+          0.25,
+          0.25,
+          1.5
+        ],
+        "BoltDamage": [
+          80,
+          120,
+          750
+        ],
+        "NumClones": [
+          5,
+          5,
+          5
+        ],
+        "NumAttacks": [
+          5,
+          5,
+          5
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-master-yi",
+    "apiName": "TFT17_MasterYi",
+    "name": "易",
+    "shortName": "易",
+    "cost": 4,
+    "role": {
+      "apiName": "ADFighter",
+      "name": "攻击战士"
+    },
+    "traits": [
+      {
+        "apiName": "Psionic",
+        "name": "灵能使"
+      },
+      {
+        "apiName": "Marauder",
+        "name": "掠夺者"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_MasterYi/Skins/Base/Images/TFT17_MasterYi_splash_tile_33.TFT_Set17.tex",
+    "stats": {
+      "hp": 1100,
+      "ad": 60,
+      "as": 0.85,
+      "armor": 65,
+      "mr": 65,
+      "range": 1,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 30,
+      "manaMax": 70,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "灵能打击",
+      "rawName": "Psi Strikes",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Every third attack is a doubleslash that deals <physicalDamage>@ModifiedPassiveDamage@ (%i:scaleAD%)</physicalDamage> bonus physical damage.<br><br><spellActive>Active:</spellActive> After brief meditation, enter a Psi-State for @Duration@ seconds, gaining <TFTBonus>@Omnivamp*100@%</TFTBonus> Omnivamp, <TFTBonus>@AttackSpeed*100@%</TFTBonus> Attack Speed, and increased movement speed. Twice a second, fire a psychic projection at a random nearby enemy that deals <physicalDamage>@ModifiedDamage@ (%i:scaleAD%%i:scaleAP%)</physicalDamage> physical damage",
+      "baseValues": {
+        "PassiveDamage": [
+          60,
+          90,
+          550
+        ],
+        "DamageAD": [
+          50,
+          75,
+          600
+        ],
+        "DamageAP": [
+          20,
+          30,
+          200
+        ],
+        "Omnivamp": [
+          0.15,
+          0.15,
+          0.15
+        ],
+        "AttackSpeed": [
+          0.7,
+          0.7,
+          0.7
+        ],
+        "Duration": [
+          5,
+          5,
+          5
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-morgana",
+    "apiName": "TFT17_Morgana",
+    "name": "莫甘娜",
+    "shortName": "莫甘娜",
+    "cost": 5,
+    "role": {
+      "apiName": "APFighter",
+      "name": "魔法战士"
+    },
+    "traits": [
+      {
+        "apiName": "Dark Lady",
+        "name": "黑暗魔女"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Morgana/Skins/Base/Images/TFT17_Morgana_splash_tile_50.TFT_Set17.tex",
+    "stats": {
+      "hp": 900,
+      "ad": 50,
+      "as": 0.9,
+      "armor": 40,
+      "mr": 40,
+      "range": 2,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 20,
+      "manaMax": 60,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "黑暗形态",
+      "rawName": "Dark Form",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Heal for @OmnivampPercent*100@% of Ability damage.<br><br><spellActive>Active:</spellActive> Transform into Dark Form for @Duration@ seconds, gaining <TFTBonus>@ModifiedShield@&nbsp;(%i:scaleAP%)</TFTBonus> Shield for the duration. While in Dark Form, tether the @NumEnemies@ nearest enemies, dealing <magicDamage>@ModifiedDamagePerSecond@&nbsp;(%i:scaleAP%)</magicDamage> magic damage per second to each one. <br><br>At the end of the transfomation, deal <magicDamage>@ModifiedFinalDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage to all tethered enemies.",
+      "baseValues": {
+        "Shield": [
+          250,
+          350,
+          4000
+        ],
+        "TetherDamagePerSecond": [
+          70,
+          105,
+          1500
+        ],
+        "NumEnemies": [
+          3,
+          3,
+          3
+        ],
+        "FinalDamage": [
+          270,
+          405,
+          4000
+        ],
+        "OmnivampPercent": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "Duration": [
+          5,
+          5,
+          5
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-nami",
+    "apiName": "TFT17_Nami",
+    "name": "娜美",
+    "shortName": "娜美",
+    "cost": 4,
+    "role": {
+      "apiName": "APCaster",
+      "name": "魔法施法者"
+    },
+    "traits": [
+      {
+        "apiName": "Space Groove",
+        "name": "太空律动"
+      },
+      {
+        "apiName": "Replicator",
+        "name": "复制体"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Nami/Skins/Base/Images/TFT17_Nami_splash_tile_41.TFT_Set17.tex",
+    "stats": {
+      "hp": 850,
+      "ad": 40,
+      "as": 0.75,
+      "armor": 30,
+      "mr": 30,
+      "range": 4,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 30,
+      "manaMax": 80,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "泡泡爆弹",
+      "rawName": "Bubble Pop",
+      "descriptionZh": null,
+      "descriptionRaw": "Toss a disco bubble at the target that deals <magicDamage>@ModifiedDamage@&nbsp;(%i:scaleAP%)</magicDamage> split between enemies in a one hex radius. The explosion sends @NumProjectiles@ globs towards nearby enemies that deal <magicDamage>@ModifiedFirstBounceDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage. On cast, Nami enters {{TFT17_SpaceGroove_TheGroove}} for @GrooveDuration@ seconds.",
+      "baseValues": {
+        "Damage": [
+          400,
+          600,
+          5000
+        ],
+        "NumProjectiles": [
+          3,
+          3,
+          3
+        ],
+        "FirstBounceDamage": [
+          95,
+          145,
+          1000
+        ],
+        "GrooveDuration": [
+          3,
+          3,
+          3
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-riven",
+    "apiName": "TFT17_Riven",
+    "name": "锐雯",
+    "shortName": "锐雯",
+    "cost": 4,
+    "role": {
+      "apiName": "HFighter",
+      "name": "混合战士"
+    },
+    "traits": [
+      {
+        "apiName": "Timebreaker",
+        "name": "时空战士"
+      },
+      {
+        "apiName": "Rogue",
+        "name": "游侠"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Riven/Skins/Base/Images/TFT17_Riven_splash_tile_18.TFT_Set17.tex",
+    "stats": {
+      "hp": 1100,
+      "ad": 0,
+      "as": 0.85,
+      "armor": 60,
+      "mr": 60,
+      "range": 1,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 20,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "时空裂斩",
+      "rawName": "Time Warp",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> This Ability adapts to Attack Damage or Ability Power, whichever is higher. Attacks deal <ShowIfNot.TFT17_Riven_IsAD><magicDamage>@ModifiedPassiveAPDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic</ShowIfNot.TFT17_Riven_IsAD><ShowIf.TFT17_Riven_IsAD><physicalDamage>@ModifiedPassiveADDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical</ShowIf.TFT17_Riven_IsAD> damage.<br><br><spellActive>Active:</spellActive> Dash to a nearby hex, gaining <TFTBonus>@Shield@&nbsp; </TFTBonus>Shield for @ShieldDuration@ seconds and slashing adjacent enemies for <ShowIfNot.TFT17_Riven_IsAD><magicDamage>@ModifiedAPDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic</ShowIfNot.TFT17_Riven_IsAD><ShowIf.TFT17_Riven_IsAD><physicalDamage>@ModifiedADDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical</ShowIf.TFT17_Riven_IsAD> damage. Every third cast, leap into the air and launch a wave of energy that deals <ShowIfNot.TFT17_Riven_IsAD><magicDamage>@ModifiedAPWaveDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic</ShowIfNot.TFT17_Riven_IsAD><ShowIf.TFT17_Riven_IsAD><physicalDamage>@ModifiedADWaveDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical</ShowIf.TFT17_Riven_IsAD> damage to enemies in a line.",
+      "baseValues": {
+        "PassiveDamage": [
+          75,
+          115,
+          300
+        ],
+        "DashRange": [
+          1,
+          1,
+          1
+        ],
+        "Shield": [
+          100,
+          150,
+          1200
+        ],
+        "ShieldDuration": [
+          2,
+          2,
+          2
+        ],
+        "Damage": [
+          100,
+          150,
+          1000
+        ],
+        "WaveDamage": [
+          160,
+          240,
+          2000
+        ],
+        "SpecialCastCount": [
+          3,
+          3,
+          3
+        ],
+        "ThirdCastConeHexRange": [
+          3,
+          3,
+          3
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-shen",
+    "apiName": "TFT17_Shen",
+    "name": "慎",
+    "shortName": "慎",
+    "cost": 5,
+    "role": {
+      "apiName": "APFighter",
+      "name": "魔法战士"
+    },
+    "traits": [
+      {
+        "apiName": "Bulwark",
+        "name": "暮光铁壁"
+      },
+      {
+        "apiName": "Bastion",
+        "name": "坚垒卫士"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Shen/Skins/Base/Images/TFT17_shen_splash_tile_49.TFT_Set17.tex",
+    "stats": {
+      "hp": 1300,
+      "ad": 50,
+      "as": 0.95,
+      "armor": 75,
+      "mr": 75,
+      "range": 1,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 10,
+      "manaMax": 70,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "现实撕裂",
+      "rawName": "Reality Tear",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> On cast, attacks gain <magicDamage>@ModifiedBonusDamage@&nbsp;(%i:scaleAP%)</magicDamage> stacking bonus magic damage. Starting from the third cast, gain <trueDamage>true damage</trueDamage> instead.<br><br><spellActive>Active:</spellActive> Gain <TFTBonus>@ModifiedShield@&nbsp;(%i:scaleHealth%%i:scaleAP%)</TFTBonus> Shield for @ShieldDuration@ seconds, then slice open a rift on the largest group of champions dealing the Passive's bonus damage to all enemies within. Enemies have their Attack Speed slowed by <TFTBonus>@ASSlow*100@%</TFTBonus> while allies within gain <TFTBonus>@BonusAS*100@%</TFTBonus> Attack Speed, both rapidly decaying over @BuffDebuffDuration@ seconds.",
+      "baseValues": {
+        "BonusDamageOnAttack": [
+          50,
+          75,
+          777
+        ],
+        "ShieldHP": [
+          0.08,
+          0.08,
+          0.08
+        ],
+        "ShieldAP": [
+          225,
+          300,
+          3456
+        ],
+        "ShieldDuration": [
+          3,
+          3,
+          3
+        ],
+        "ASSlow": [
+          0.5,
+          0.5,
+          9.99
+        ],
+        "BonusAS": [
+          0.8,
+          0.8,
+          9.99
+        ],
+        "BuffDebuffDuration": [
+          3,
+          3,
+          3
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-sona",
+    "apiName": "TFT17_Sona",
+    "name": "娑娜",
+    "shortName": "琴女",
+    "cost": 5,
+    "role": {
+      "apiName": "APCaster",
+      "name": "魔法施法者"
+    },
+    "traits": [
+      {
+        "apiName": "Commander",
+        "name": "指挥官"
+      },
+      {
+        "apiName": "Psionic",
+        "name": "灵能使"
+      },
+      {
+        "apiName": "Shepherd",
+        "name": "牧魂人"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Sona/Skins/Base/Images/TFT17_Sona_splash_tile_17.TFT_Set17.tex",
+    "stats": {
+      "hp": 900,
+      "ad": 35,
+      "as": 0.9,
+      "armor": 40,
+      "mr": 40,
+      "range": 4,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 25,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "灵能碾压",
+      "rawName": "Psionic Crush",
+      "descriptionZh": null,
+      "descriptionRaw": "Hurl a chunk of magnetic debris at the nearest target without one, dealing <magicDamage>@ModifiedDebrisDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage and sticking it to them. If an enemy with debris dies, it passes to the nearest enemy without one.<br><br>Every @NumCasts@ casts, instead rip off all debris dealing <magicDamage>@ModifiedDebrisRipDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage, then crush all the debris onto the target, dealing <magicDamage>@ModifiedSlamDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage and briefly stunning them.",
+      "baseValues": {
+        "DebrisDamage": [
+          270,
+          405,
+          999
+        ],
+        "SlamDamage": [
+          620,
+          930,
+          9999
+        ],
+        "NumCasts": [
+          5,
+          5,
+          5
+        ],
+        "DebrisRipDamage": [
+          120,
+          180,
+          999
+        ],
+        "StunDuration": [
+          1,
+          1,
+          1
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-vex",
+    "apiName": "TFT17_Vex",
+    "name": "薇古丝",
+    "shortName": "薇古丝",
+    "cost": 5,
+    "role": {
+      "apiName": "APCarry",
+      "name": "魔法射手"
+    },
+    "traits": [
+      {
+        "apiName": "Doomer",
+        "name": "末日使者"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Vex/Skins/Base/Images/TFT17_vex_splash_tile_10.TFT_Set17.tex",
+    "stats": {
+      "hp": 900,
+      "ad": 15,
+      "as": 0.8,
+      "armor": 40,
+      "mr": 40,
+      "range": 10,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 60,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "来搭把手吧，影子！",
+      "rawName": "Lend Me a Hand, Shadow!",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Every time Vex attacks, Shadow strikes a nearby enemy, dealing <magicDamage>@ModifiedShadowHandDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage. Whenever an enemy is struck @NumStrikesForPassive@ times by Shadow, Shadow strikes them again.<br><br><spellActive>Active:</spellActive> Shadow launches @NumActiveStrikes@ empowered strikes, dealing <magicDamage>@ModifiedShadowHandMagicDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage instead.",
+      "baseValues": {
+        "ShadowHandDamage": [
+          30,
+          45,
+          250
+        ],
+        "ShadowHandMagicDamage": [
+          140,
+          210,
+          1000
+        ],
+        "NumActiveStrikes": [
+          3,
+          3,
+          3
+        ],
+        "NumStrikesForPassive": [
+          5,
+          5,
+          5
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-xayah",
+    "apiName": "TFT17_Xayah",
+    "name": "霞",
+    "shortName": "霞",
+    "cost": 4,
+    "role": {
+      "apiName": "ADCarry",
+      "name": "攻击射手"
+    },
+    "traits": [
+      {
+        "apiName": "Stargazer",
+        "name": "观星者"
+      },
+      {
+        "apiName": "Sniper",
+        "name": "狙神"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Xayah/Skins/Base/Images/TFT17_Xayah_splash_tile_1.TFT_Set17.tex",
+    "stats": {
+      "hp": 850,
+      "ad": 45,
+      "as": 0.75,
+      "armor": 30,
+      "mr": 30,
+      "range": 6,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 0,
+      "manaMax": 50,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "星弹弹射",
+      "rawName": "Stellar Ricochet",
+      "descriptionZh": null,
+      "descriptionRaw": "<spellPassive>Passive:</spellPassive> Attacks bounce to strike <scaleLevel>@AttackNumEnemies@</scaleLevel> times, dealing <scaleLevel>@PassivePercentReducedDamage*100@%</scaleLevel> reduced damage per target hit and leaving a Feather behind the final target.<br><br><spellActive>Active:</spellActive> Gain <TFTBonus>@AttackSpeed*100@%</TFTBonus> Attack Speed for @Duration@ seconds. At the end, recall all Feathers split between the closest @RecallFeatherTargets@ enemies, dealing <physicalDamage>@TotalDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage each.",
+      "baseValues": {
+        "AttackNumEnemies": [
+          3,
+          3,
+          5
+        ],
+        "PassivePercentReducedDamage": [
+          0.6,
+          0.6,
+          0.3
+        ],
+        "ADDamage": [
+          46,
+          69,
+          900
+        ],
+        "APDamage": [
+          6,
+          9,
+          60
+        ],
+        "ActivePercentReducedDamage": [
+          0.2,
+          0.2,
+          0.2
+        ],
+        "RecallFeatherTargets": [
+          3,
+          3,
+          3
+        ],
+        "AttackSpeed": [
+          0.75,
+          0.75,
+          0.75
+        ],
+        "Duration": [
+          4,
+          4,
+          4
+        ]
+      },
+      "spellCrit": null
+    }
+  },
+  {
+    "id": "tft17-zed",
+    "apiName": "TFT17_Zed",
+    "name": "劫",
+    "shortName": "劫",
+    "cost": 5,
+    "role": {
+      "apiName": "ADFighter",
+      "name": "攻击战士"
+    },
+    "traits": [
+      {
+        "apiName": "Galaxy Hunter",
+        "name": "银河猎手"
+      }
+    ],
+    "avatarUrl": "ASSETS/Characters/TFT17_Zed/Skins/Base/Images/TFT17_Zed_splash_tile_68.TFT_Set17.tex",
+    "stats": {
+      "hp": 1200,
+      "ad": 85,
+      "as": 0.85,
+      "armor": 60,
+      "mr": 60,
+      "range": 1,
+      "critChance": 0.25,
+      "critDamage": 1.4,
+      "manaStart": 30,
+      "manaMax": 80,
+      "apBase": 1
+    },
+    "displayStatsByStar": {
+      "hp": [
+        null,
+        null,
+        null
+      ],
+      "ad": [
+        null,
+        null,
+        null
+      ],
+      "mana": {
+        "start": [
+          null,
+          null,
+          null
+        ],
+        "max": [
+          null,
+          null,
+          null
+        ]
+      },
+      "apDisplay": [
+        null,
+        null,
+        null
+      ]
+    },
+    "ability": {
+      "name": "量子复制",
+      "rawName": "Quantum Clone",
+      "descriptionZh": null,
+      "descriptionRaw": "Create a clone behind the target with @HPPenalty*100@% reduced max Health and @ManaCostIncrease@ increased Mana cost. The clone inherits its creator's items, stats, and current Health, and can cast Quantum Clone.",
+      "baseValues": {
+        "HPPenalty": [
+          0.33,
+          0.33,
+          0.33
+        ],
+        "ManaCostIncrease": [
+          30,
+          30,
+          30
+        ]
+      },
+      "spellCrit": null
+    }
+  }
+]

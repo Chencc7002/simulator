@@ -1,0 +1,166 @@
+{
+  id: "tft17-jhin",
+  apiName: "TFT17_Jhin",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Jhin?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Jhin]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Jhin",
+    cost: 5,
+    role: {
+      key: "{34ed6daa}",
+      apiName: "ADCarry",
+      displayName: "Attack Marksman",
+    },
+    traits: ["Dark Star", "Eradicator", "Sniper"],
+    avatarUrl: "ASSETS/Characters/TFT17_Jhin/Skins/Base/Images/TFT17_Jhin_splash_tile_37.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 900,
+    ad: 84,
+    as: 0.9,
+    armor: 40,
+    mr: 40,
+    range: 6,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 44,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 900,
+      ad: 84,
+      as: 0.9,
+      armor: 40,
+      mr: 40,
+      range: 6,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 44,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Space Opera",
+    type: null,
+    description:
+      "<spellPassive>Passive:</spellPassive> Jhin has a fixed attack speed of <scaleLevel>@FixedAS@</scaleLevel> and converts every @PercentBonusASToConvert*100@% of bonus Attack Speed into @ADConversionRate@ bonus Attack Damage.<br><br><spellActive>Active:</spellActive> Summon @NumHands@ spectral hands that fire alongside Jhin for the next @NumAttacks@ attacks. Each hand deals <physicalDamage>@TotalDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage per shot. The final shots deal <TFTBonus>@FinalShotPercentDamageIncrease*100@%</TFTBonus> more damage and pierce through the most enemies in a line, dealing @PercentDamageReductionPerTargetHit*100@% reduced damage per target hit. ",
+    baseValues: {
+      FixedAS: [0.9, 0.9, 1.4],
+      PercentBonusASToConvert: [0.01, 0.01, 0.01],
+      ADConversionRate: [0.75, 0.75, 0.75],
+      NumHands: [4, 4, 4],
+      NumAttacks: [4, 4, 4],
+      APDamage: [4, 6, 44],
+      ADDamage: [44, 66, 644],
+      FinalShotPercentDamageIncrease: [2.44, 2.44, 2.44],
+      PercentDamageReductionPerTargetHit: [0.44, 0.44, 0.44],
+    },
+    scalings: {
+      TotalDamage: [
+        {
+          type: "SumOfSubPartsCalculationPart",
+          parts: [
+            {
+              mRatio: 1,
+              mStat: 3,
+              type: "SubPartScaledProportionalToStat",
+              part: {
+                name: "ADDamage",
+                type: "NamedDataValueCalculationPart",
+              },
+            },
+            {
+              mRatio: 0.01,
+              type: "SubPartScaledProportionalToStat",
+              part: {
+                name: "APDamage",
+                type: "NamedDataValueCalculationPart",
+              },
+            },
+          ],
+        },
+      ],
+      FinalShotDamage: [
+        {
+          type: "ProductOfSubPartsCalculationPart",
+          part1: {
+            mSpellCalculationKey: "TotalDamage",
+            type: "{f3cbe7b2}",
+          },
+          part2: {
+            name: "FinalShotPercentDamageIncrease",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "FixedAS",
+        nameOverride: "Spell_TFT17_JhinSpell_AttackSpeed",
+        name: "Attacks Per Second: <scaleLevel>@FixedAS@</scaleLevel>",
+      },
+      {
+        type: "APDamage",
+        nameOverride: "TFT_AP_Damage_NoCalculation",
+        name: "Damage: %i:scaleAP%",
+      },
+      {
+        type: "ADDamage",
+        nameOverride: "TFT_ADAP_PhysicalDamage",
+        name: "Damage: <physicalDamage>@TotalDamage@</physicalDamage> = <scaleLevel>@ADDamage@ (%i:scaleAD%)</scaleLevel> + <scaleLevel>@APDamage@ (%i:scaleAP%)</scaleLevel> ",
+      },
+    ],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.92,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+    ],
+    notes: [
+      "Core stats and ability values are now confirmed from MetaTFT lookup JSON rather than ranking data.",
+      "This file intentionally prioritizes the two useful panels: skill data and stats data.",
+      "The 1-star base stats are confirmed; the 1/2/3-star display arrays shown on the page are not yet directly sourced here.",
+    ],
+  },
+}

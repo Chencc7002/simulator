@@ -1,0 +1,129 @@
+{
+  id: "tft17-aurelion-sol",
+  apiName: "TFT17_AurelionSol",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/AurelionSol?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_AurelionSol]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Aurelion Sol",
+    cost: 4,
+    role: {
+      key: "{32cdc033}",
+      apiName: "APCaster",
+      displayName: "Magic Caster",
+    },
+    traits: ["Mecha", "Channeler"],
+    avatarUrl: "ASSETS/Characters/TFT17_AurelionSol/Skins/Base/Images/TFT17_AurelionSol_splash_tile_2.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 850,
+    ad: 30,
+    as: 0.75,
+    armor: 30,
+    mr: 30,
+    range: 6,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 15,
+    manaMax: 75,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 850,
+      ad: 30,
+      as: 0.75,
+      armor: 30,
+      mr: 30,
+      range: 6,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 15,
+      manaMax: 75,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Deathbeam",
+    type: null,
+    description:
+      "Channel a deathbeam in a line towards the current target for @Duration@ seconds. It deals <magicDamage>@ModifiedDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage per second, reduced by @DamageReductionPerTarget*100@% per enemy it passes through. Deathbeam ignores @MagicPen*100@% of the enemy's Magic Resist.",
+    baseValues: {
+      Duration: [3, 3, 3],
+      DamagePerSecond: [200, 300, 2700],
+      MagicPen: [0.3, 0.3, 0.3],
+      DamageReductionPerTarget: [0.6, 0.6, 0.6],
+    },
+    scalings: {
+      ModifiedDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "DamagePerSecond",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "DamagePerSecond",
+        typeIndex: 2,
+        nameOverride: "TFT_AP_MagicDamage",
+        name: "Damage: <magicDamage>@ModifiedDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+    ],
+    extraAbilitiesRaw: {
+      TFT17_AurelionSolSpell_Transformed:
+        "Present in source lookup but omitted from normalized fields for now.",
+    },
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.9,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+      "normalization of transformed extra ability",
+    ],
+    notes: [
+      "Core stats and main ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: caster rather than tank.",
+    ],
+  },
+}

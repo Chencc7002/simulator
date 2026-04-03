@@ -1,0 +1,155 @@
+{
+  id: "tft17-blitzcrank",
+  apiName: "TFT17_Blitzcrank",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Blitzcrank?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Blitzcrank]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Blitzcrank",
+    cost: 5,
+    role: {
+      key: "{44de5928}",
+      apiName: "APFighter",
+      displayName: "Magic Fighter",
+    },
+    traits: ["Party Animal", "Space Groove", "Vanguard"],
+    avatarUrl: "ASSETS/Characters/TFT17_Blitzcrank/Skins/Base/Images/TFT17_Blitzcrank_splash_tile_65.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 1100,
+    ad: 50,
+    as: 0.9,
+    armor: 60,
+    mr: 60,
+    range: 1,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 20,
+    manaMax: 100,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 1100,
+      ad: 50,
+      as: 0.9,
+      armor: 60,
+      mr: 60,
+      range: 1,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 20,
+      manaMax: 100,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Party Crasher",
+    type: null,
+    description:
+      "<spellPassive>Passive:</spellPassive> Every <scaleLevel>@BoltCooldown@</scaleLevel> seconds, call down a bolt on the highest Health nearby enemy that deals <magicDamage>@ModifiedBoltDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage.<br><br><spellActive>Active:</spellActive> Summon a disco ball at the largest clump of enemies, then knock up the current target into it, dealing <magicDamage>@ModifiedUppercutDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage. They crash down into the disco ball, dealing <magicDamage>@ModifiedExplosionDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage in a three hex radius. Enter {{TFT17_SpaceGroove_TheGroove}} for @GrooveDurationPerTarget@ second per enemy hit.",
+    baseValues: {
+      BoltCooldown: [2, 2, 1],
+      BoltDamage: [70, 100, 300],
+      UppercutDamage: [150, 225, 999],
+      ExplosionDamage: [175, 265, 5000],
+      GrooveDurationPerTarget: [1, 1, 1],
+    },
+    scalings: {
+      ModifiedBoltDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "BoltDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedUppercutDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "UppercutDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedExplosionDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "ExplosionDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "BoltDamage",
+        nameOverride: "Spell_TFT17_BlitzcrankSpell_BoltDamage",
+        name: "Bolt Damage: <magicDamage>@ModifiedBoltDamage@&nbsp;(%i:scaleAP%)</magicDamage>",
+      },
+      {
+        type: "UppercutDamage",
+        nameOverride: "Spell_TFT17_BlitzcrankSpell_UppercutDamage",
+        name: "Uppercut Damage: <magicDamage>@ModifiedUppercutDamage@&nbsp;(%i:scaleAP%)</magicDamage>",
+      },
+      {
+        type: "ExplosionDamage",
+        nameOverride: "Spell_TFT17_BlitzcrankSpell_ExplosionDamage",
+        name: "Explosion Damage: <magicDamage>@ModifiedExplosionDamage@&nbsp;(%i:scaleAP%)</magicDamage>",
+      },
+    ],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.91,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: fighter rather than tank, even though one of its traits is Vanguard.",
+      "The 1-star base stats are confirmed; the 1/2/3-star display arrays shown on the page are not yet directly sourced here.",
+    ],
+  },
+}

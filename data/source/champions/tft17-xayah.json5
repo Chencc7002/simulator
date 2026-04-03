@@ -1,0 +1,111 @@
+{
+  id: "tft17-xayah",
+  apiName: "TFT17_Xayah",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Xayah?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Xayah]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Xayah",
+    cost: 4,
+    role: {
+      key: "{34ed6daa}",
+      apiName: "ADCarry",
+      displayName: "Attack Marksman",
+    },
+    traits: ["Stargazer", "Sniper"],
+    avatarUrl: "ASSETS/Characters/TFT17_Xayah/Skins/Base/Images/TFT17_Xayah_splash_tile_1.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 850,
+    ad: 45,
+    as: 0.75,
+    armor: 30,
+    mr: 30,
+    range: 6,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 50,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 850,
+      ad: 45,
+      as: 0.75,
+      armor: 30,
+      mr: 30,
+      range: 6,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 50,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Stellar Ricochet",
+    type: null,
+    description:
+      "<spellPassive>Passive:</spellPassive> Attacks bounce to strike <scaleLevel>@AttackNumEnemies@</scaleLevel> times, dealing <scaleLevel>@PassivePercentReducedDamage*100@%</scaleLevel> reduced damage per target hit and leaving a Feather behind the final target.<br><br><spellActive>Active:</spellActive> Gain <TFTBonus>@AttackSpeed*100@%</TFTBonus> Attack Speed for @Duration@ seconds. At the end, recall all Feathers split between the closest @RecallFeatherTargets@ enemies, dealing <physicalDamage>@TotalDamage@&nbsp;(%i:scaleAD%)</physicalDamage> physical damage each.",
+    baseValues: {
+      AttackNumEnemies: [3, 3, 5],
+      PassivePercentReducedDamage: [0.6, 0.6, 0.3],
+      ADDamage: [46, 69, 900],
+      APDamage: [6, 9, 60],
+      ActivePercentReducedDamage: [0.2, 0.2, 0.2],
+      RecallFeatherTargets: [3, 3, 3],
+      AttackSpeed: [0.75, 0.75, 0.75],
+      Duration: [4, 4, 4],
+    },
+    scalings: {},
+    tooltipElementsRaw: [],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.88,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+      "normalized calculation fields for feather recall damage",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: marksman rather than tank.",
+    ],
+  },
+}

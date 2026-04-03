@@ -1,0 +1,108 @@
+{
+  id: "tft17-graves",
+  apiName: "TFT17_Graves",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Graves?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Graves]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Graves",
+    cost: 5,
+    role: {
+      key: "{34ed6daa}",
+      apiName: "ADCarry",
+      displayName: "Attack Marksman",
+    },
+    traits: ["Factory New"],
+    avatarUrl: "ASSETS/Characters/TFT17_Graves/Skins/Base/Images/TFT17_Graves_splash_tile_18.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 900,
+    ad: 57,
+    as: 0.7,
+    armor: 40,
+    mr: 40,
+    range: 4,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 60,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 900,
+      ad: 57,
+      as: 0.7,
+      armor: 40,
+      mr: 40,
+      range: 4,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 60,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Collateral Damage",
+    type: null,
+    description:
+      "<spellPassive>Passive:</spellPassive> Attacks fire @NumProjectiles@ projectiles in a cone that deal <physicalDamage>@ModifiedPassiveDamage@ (%i:TFTBaseAD%)</physicalDamage> physical damage each.<br><br><spellActive>Active:</spellActive> Fire an explosive shell that deals <physicalDamage>@ModifiedDamage@ (%i:scaleAD%)</physicalDamage> physical damage to the target, and <physicalDamage>@ModifiedSecondaryDamage@&nbsp;(%i:scaleAD%%i:scaleAP%)</physicalDamage> physical damage to adjacent enemies.",
+    baseValues: {
+      NumProjectiles: [5, 5, 5],
+      PassivePercentBAD: [0.33, 0.33, 0.33],
+      Damage: [360, 540, 5555],
+      SecondaryDamageAD: [120, 180, 3333],
+      SecondaryDamageAP: [30, 45, 777],
+    },
+    scalings: {},
+    tooltipElementsRaw: [],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.89,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+      "normalized calculation fields for passive and splash damage",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: marksman rather than tank.",
+    ],
+  },
+}

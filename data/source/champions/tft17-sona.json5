@@ -1,0 +1,154 @@
+{
+  id: "tft17-sona",
+  apiName: "TFT17_Sona",
+  set: "TFTSet17",
+  patchChannel: "PBE",
+  sourcePatchReportedByMetaTFT: "17.1",
+
+  source: {
+    pageUrl: "https://www.metatft.com/units/Sona?set=TFTSet17",
+    detailLookup: "https://data.metatft.com/lookups/TFTSet17_pbe_en_us.json",
+    lookupObjectKey: "units[TFT17_Sona]",
+    lastVerified: "2026-04-02",
+  },
+
+  identity: {
+    name: "Sona",
+    cost: 5,
+    role: {
+      key: "{32cdc033}",
+      apiName: "APCaster",
+      displayName: "Magic Caster",
+    },
+    traits: ["Commander", "Psionic", "Shepherd"],
+    avatarUrl: "ASSETS/Characters/TFT17_Sona/Skins/Base/Images/TFT17_Sona_splash_tile_17.TFT_Set17.tex",
+  },
+
+  stats: {
+    hp: 900,
+    ad: 35,
+    as: 0.9,
+    armor: 40,
+    mr: 40,
+    range: 4,
+    critChance: 0.25,
+    critDamage: 1.4,
+    manaStart: 0,
+    manaMax: 25,
+    apBase: 1,
+  },
+
+  displayStatsByStar: {
+    hp: [null, null, null],
+    ad: [null, null, null],
+    mana: {
+      start: [null, null, null],
+      max: [null, null, null],
+    },
+    apDisplay: [null, null, null],
+    notes: [
+      "Use this block for manually verified 1/2/3-star values shown in the stats panel.",
+      "Do not infer these values from `stats` unless the growth rule is confirmed.",
+    ],
+  },
+
+  statsPanel: {
+    rawBaseStats: {
+      hp: 900,
+      ad: 35,
+      as: 0.9,
+      armor: 40,
+      mr: 40,
+      range: 4,
+      critChance: 0.25,
+      critDamage: 1.4,
+      manaStart: 0,
+      manaMax: 25,
+      apBase: 1,
+    },
+    missingDisplayValues: [
+      "hpByStar",
+      "adByStar",
+      "manaByStar",
+      "abilityPowerDisplay",
+    ],
+  },
+
+  ability: {
+    name: "Psionic Crush",
+    type: null,
+    description:
+      "Hurl a chunk of magnetic debris at the nearest target without one, dealing <magicDamage>@ModifiedDebrisDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage and sticking it to them. If an enemy with debris dies, it passes to the nearest enemy without one.<br><br>Every @NumCasts@ casts, instead rip off all debris dealing <magicDamage>@ModifiedDebrisRipDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage, then crush all the debris onto the target, dealing <magicDamage>@ModifiedSlamDamage@&nbsp;(%i:scaleAP%)</magicDamage> magic damage and briefly stunning them.",
+    baseValues: {
+      DebrisDamage: [270, 405, 999],
+      SlamDamage: [620, 930, 9999],
+      NumCasts: [5, 5, 5],
+      DebrisRipDamage: [120, 180, 999],
+      StunDuration: [1, 1, 1],
+    },
+    scalings: {
+      ModifiedSlamDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "SlamDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedDebrisDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "DebrisDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+      ModifiedDebrisRipDamage: [
+        {
+          mRatio: 0.01,
+          type: "SubPartScaledProportionalToStat",
+          part: {
+            name: "DebrisRipDamage",
+            type: "NamedDataValueCalculationPart",
+          },
+        },
+      ],
+    },
+    tooltipElementsRaw: [
+      {
+        type: "DebrisDamage",
+        nameOverride: "Spell_TFT17_SonaSpell_DebrisDamage",
+        name: "Damage: <magicDamage>@ModifiedDebrisDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+      {
+        type: "DebrisRipDamage",
+        nameOverride: "Spell_TFT17_SonaSpell_DebrisRipDamage",
+        name: "Rip Damage: <magicDamage>@ModifiedDebrisRipDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+      {
+        type: "SlamDamage",
+        nameOverride: "Spell_TFT17_SonaSpell_SlamDamage",
+        name: "Slam Damage: <magicDamage>@ModifiedSlamDamage@ (%i:scaleAP%)</magicDamage>",
+      },
+    ],
+    spellCrit: null,
+  },
+
+  review: {
+    status: "verified-core-panels",
+    confidence: 0.92,
+    missing: [
+      "stats panel star display values",
+      "normalized ability type",
+      "spellCrit flag",
+    ],
+    notes: [
+      "Core stats and ability values are confirmed from MetaTFT Set 17 PBE lookup JSON.",
+      "This unit is included because it matches the DPS-oriented filter: caster rather than tank.",
+    ],
+  },
+}
